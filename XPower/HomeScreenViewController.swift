@@ -38,6 +38,12 @@ class HomeScreenViewController: UIViewController {
         
         self.pointsbutton.addSubview(pointsImageView)
         
+        let exitImage = UIImage(named: "exit")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        
+        self.logoutbutton.setBackgroundImage(exitImage, forState: UIControlState.Normal)
+        
+        self.logoutbutton.tintColor = UIColor.blueColor()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +62,12 @@ class HomeScreenViewController: UIViewController {
     
     
     
+    @IBAction func pointsAction(sender: AnyObject) {
+        
+        self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("points"))!, animated: true)
+        
+        
+    }
     
     
     

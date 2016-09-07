@@ -17,6 +17,9 @@
 		555113281D806A21000825D0 /* ChooseSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113271D806A21000825D0 /* ChooseSchoolViewController.swift */; };
 		5551132A1D8073E9000825D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113291D8073E9000825D0 /* SignUpViewController.swift */; };
 		5551132C1D80803F000825D0 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551132B1D80803F000825D0 /* HomeScreenViewController.swift */; };
+		5551132E1D809AB1000825D0 /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551132D1D809AB1000825D0 /* PointsViewController.swift */; };
+		555113301D809B9C000825D0 /* PointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551132F1D809B9C000825D0 /* PointsTableViewController.swift */; };
+		555113321D80B02E000825D0 /* ObtainedPointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113311D80B02E000825D0 /* ObtainedPointsTableViewController.swift */; };
 		C7E82481882EA4547142EC12 /* Pods_XPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FDE0A8B13A51A3386FB2F3A /* Pods_XPower.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,9 @@
 		555113271D806A21000825D0 /* ChooseSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSchoolViewController.swift; sourceTree = "<group>"; };
 		555113291D8073E9000825D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5551132B1D80803F000825D0 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		5551132D1D809AB1000825D0 /* PointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
+		5551132F1D809B9C000825D0 /* PointsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewController.swift; sourceTree = "<group>"; };
+		555113311D80B02E000825D0 /* ObtainedPointsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObtainedPointsTableViewController.swift; sourceTree = "<group>"; };
 		8FDE0A8B13A51A3386FB2F3A /* Pods_XPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68E4E226040BAB67642ABE1 /* Pods-XPower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XPower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XPower/Pods-XPower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +97,9 @@
 				555113271D806A21000825D0 /* ChooseSchoolViewController.swift */,
 				555113291D8073E9000825D0 /* SignUpViewController.swift */,
 				5551132B1D80803F000825D0 /* HomeScreenViewController.swift */,
+				5551132D1D809AB1000825D0 /* PointsViewController.swift */,
+				5551132F1D809B9C000825D0 /* PointsTableViewController.swift */,
+				555113311D80B02E000825D0 /* ObtainedPointsTableViewController.swift */,
 			);
 			path = XPower;
 			sourceTree = "<group>";
@@ -226,10 +235,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5551132A1D8073E9000825D0 /* SignUpViewController.swift in Sources */,
+				5551132E1D809AB1000825D0 /* PointsViewController.swift in Sources */,
+				555113321D80B02E000825D0 /* ObtainedPointsTableViewController.swift in Sources */,
 				555113261D8067A5000825D0 /* LoginViewController.swift in Sources */,
 				555113281D806A21000825D0 /* ChooseSchoolViewController.swift in Sources */,
 				555113131D80635F000825D0 /* ViewController.swift in Sources */,
 				555113191D80635F000825D0 /* XPower.xcdatamodeld in Sources */,
+				555113301D809B9C000825D0 /* PointsTableViewController.swift in Sources */,
 				555113111D80635F000825D0 /* AppDelegate.swift in Sources */,
 				5551132C1D80803F000825D0 /* HomeScreenViewController.swift in Sources */,
 			);
