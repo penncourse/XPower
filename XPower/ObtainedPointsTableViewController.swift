@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Parse
+import Firebase
+import FirebaseDatabase
 
 class ObtainedPointsTableViewController: UITableViewController {
+    var  rootRef:FIRDatabaseReference?
     
     var obtainedPointsArray = [String]()
     static let obtainedPointsTableViewControllerSharedInstance = ObtainedPointsTableViewController()
@@ -18,6 +22,7 @@ class ObtainedPointsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -61,6 +66,11 @@ class ObtainedPointsTableViewController: UITableViewController {
         // Configure the cell...
        // cell.textLabel?.text = obtainedPointsArray[indexPath.row]
         
+        cell.backgroundColor = UIColor.clearColor()
+        
+        cell.textLabel?.font = UIFont.systemFontOfSize(20)
+
+        
         return cell
     }
     
@@ -93,12 +103,13 @@ class ObtainedPointsTableViewController: UITableViewController {
             cellLabel.lineBreakMode = .ByWordWrapping
             cellLabel.numberOfLines = 0
             
-            cellLabel.textColor = UIColor.blackColor()
+            cellLabel.textColor = UIColor.whiteColor()
             
             
             
             cellButton = UIButton(frame: CGRectMake(0, 28, 35, 35))
-            cellButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+           
+            cellButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             
             
             
@@ -115,7 +126,7 @@ class ObtainedPointsTableViewController: UITableViewController {
            let temp = object.obtainedPointsArray[row]
             
             
-            AppDelegate. String(PointsTableViewController.sharedPointsTableViewControllerInstance.pointstable[title]))
+//          String(PointsTableViewController.sharedPointsTableViewControllerInstance.pointstable[title]))
             cellButton.setTitle(String(PointsTableViewController.sharedPointsTableViewControllerInstance.pointstable[title]!), forState: .Normal)
             
             cellLabel.text = title
@@ -126,6 +137,7 @@ class ObtainedPointsTableViewController: UITableViewController {
             
             
             addSubview(cellLabel)
+            
             addSubview(cellButton)
             
             

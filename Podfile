@@ -7,5 +7,13 @@ target 'XPower' do
 
   # Pods for XPower
   pod ‘Parse’
-
+  pod 'JSQMessagesViewController'
+  pod 'GoogleSignIn'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Storage'
+  pod 'skpsmtpmessage'
+  pod 'CVCalendar'
+  pod 'SideMenu'
 end

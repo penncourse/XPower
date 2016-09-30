@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553BEE8D1D82E75400EA585E /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE8C1D82E75400EA585E /* ResetPasswordViewController.swift */; };
+		553BEE8F1D82ED8700EA585E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE8E1D82ED8700EA585E /* TabBarController.swift */; };
+		553BEE911D830F6100EA585E /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE901D830F6100EA585E /* ReportViewController.swift */; };
+		553BEE931D83110D00EA585E /* EmailHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE921D83110D00EA585E /* EmailHandler.swift */; };
 		555113111D80635F000825D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113101D80635F000825D0 /* AppDelegate.swift */; };
 		555113131D80635F000825D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113121D80635F000825D0 /* ViewController.swift */; };
 		555113161D80635F000825D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555113141D80635F000825D0 /* Main.storyboard */; };
 		555113191D80635F000825D0 /* XPower.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 555113171D80635F000825D0 /* XPower.xcdatamodeld */; };
-		5551131B1D80635F000825D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5551131A1D80635F000825D0 /* Assets.xcassets */; };
 		5551131E1D80635F000825D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5551131C1D80635F000825D0 /* LaunchScreen.storyboard */; };
 		555113261D8067A5000825D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113251D8067A5000825D0 /* LoginViewController.swift */; };
 		555113281D806A21000825D0 /* ChooseSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113271D806A21000825D0 /* ChooseSchoolViewController.swift */; };
@@ -20,17 +23,39 @@
 		5551132E1D809AB1000825D0 /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551132D1D809AB1000825D0 /* PointsViewController.swift */; };
 		555113301D809B9C000825D0 /* PointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551132F1D809B9C000825D0 /* PointsTableViewController.swift */; };
 		555113321D80B02E000825D0 /* ObtainedPointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555113311D80B02E000825D0 /* ObtainedPointsTableViewController.swift */; };
+		555DF2991D81FDFF00809D8F /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DF2981D81FDFF00809D8F /* ScoreboardViewController.swift */; };
+		555DF29B1D825BDC00809D8F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555DF29A1D825BDC00809D8F /* SettingViewController.swift */; };
+		555F4A611D81097700DFEDB6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 555F4A601D81097700DFEDB6 /* GoogleService-Info.plist */; };
+		555F4A631D81B0B900DFEDB6 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A621D81B0B900DFEDB6 /* FriendsTableViewController.swift */; };
+		555F4A651D81B0D000DFEDB6 /* InvitationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A641D81B0D000DFEDB6 /* InvitationTableViewController.swift */; };
+		555F4A671D81B0E300DFEDB6 /* FriendAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A661D81B0E300DFEDB6 /* FriendAddViewController.swift */; };
+		555F4A691D81C45400DFEDB6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A681D81C45400DFEDB6 /* ChatViewController.swift */; };
+		555F4A6B1D81C73D00DFEDB6 /* Avartar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A6A1D81C73D00DFEDB6 /* Avartar.swift */; };
+		555F4A6D1D81C76200DFEDB6 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A6C1D81C76200DFEDB6 /* ImageCache.swift */; };
+		555F4A6F1D81CBA300DFEDB6 /* UploadAvartarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A6E1D81CBA300DFEDB6 /* UploadAvartarViewController.swift */; };
+		558E29A61D826B4700288848 /* TouchIdKeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 558E29A41D826B4700288848 /* TouchIdKeyChainHelper.m */; };
+		5592AAE11D873DC1000FD135 /* FriendHomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592AAE01D873DC1000FD135 /* FriendHomeScreenViewController.swift */; };
+		5592AAE51D8855CC000FD135 /* RightMenuTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592AAE31D8855CC000FD135 /* RightMenuTableController.swift */; };
+		5592AAE71D8858EA000FD135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5592AAE61D8858EA000FD135 /* Assets.xcassets */; };
+		5592AAE91D887D2F000FD135 /* InvitationObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592AAE81D887D2F000FD135 /* InvitationObservation.swift */; };
+		55BA51BB1D86FF8E007C0F69 /* ModalCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA51BA1D86FF8E007C0F69 /* ModalCalendarViewController.swift */; };
+		55BA51BD1D871303007C0F69 /* NewSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA51BC1D871303007C0F69 /* NewSettingViewController.swift */; };
+		55BA51BF1D871525007C0F69 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA51BE1D871525007C0F69 /* ChangePasswordViewController.swift */; };
+		55BA51C11D872530007C0F69 /* TurnOnOrOffTouchIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA51C01D872530007C0F69 /* TurnOnOrOffTouchIdViewController.swift */; };
 		C7E82481882EA4547142EC12 /* Pods_XPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FDE0A8B13A51A3386FB2F3A /* Pods_XPower.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F96CE663F433502A051DAA7 /* Pods-XPower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XPower.release.xcconfig"; path = "Pods/Target Support Files/Pods-XPower/Pods-XPower.release.xcconfig"; sourceTree = "<group>"; };
+		553BEE8C1D82E75400EA585E /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		553BEE8E1D82ED8700EA585E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		553BEE901D830F6100EA585E /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		553BEE921D83110D00EA585E /* EmailHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailHandler.swift; sourceTree = "<group>"; };
 		5551130D1D80635F000825D0 /* XPower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		555113101D80635F000825D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		555113121D80635F000825D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		555113151D80635F000825D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		555113181D80635F000825D0 /* XPower.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XPower.xcdatamodel; sourceTree = "<group>"; };
-		5551131A1D80635F000825D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5551131D1D80635F000825D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5551131F1D80635F000825D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		555113251D8067A5000825D0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +65,27 @@
 		5551132D1D809AB1000825D0 /* PointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
 		5551132F1D809B9C000825D0 /* PointsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewController.swift; sourceTree = "<group>"; };
 		555113311D80B02E000825D0 /* ObtainedPointsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObtainedPointsTableViewController.swift; sourceTree = "<group>"; };
+		555DF2981D81FDFF00809D8F /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
+		555DF29A1D825BDC00809D8F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		555F4A601D81097700DFEDB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		555F4A621D81B0B900DFEDB6 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsTableViewController.swift; path = ../../BarApp/BarApp/FriendsTableViewController.swift; sourceTree = "<group>"; };
+		555F4A641D81B0D000DFEDB6 /* InvitationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvitationTableViewController.swift; path = ../../BarApp/BarApp/InvitationTableViewController.swift; sourceTree = "<group>"; };
+		555F4A661D81B0E300DFEDB6 /* FriendAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendAddViewController.swift; path = ../../BarApp/BarApp/FriendAddViewController.swift; sourceTree = "<group>"; };
+		555F4A681D81C45400DFEDB6 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		555F4A6A1D81C73D00DFEDB6 /* Avartar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avartar.swift; sourceTree = "<group>"; };
+		555F4A6C1D81C76200DFEDB6 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		555F4A6E1D81CBA300DFEDB6 /* UploadAvartarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadAvartarViewController.swift; sourceTree = "<group>"; };
+		558E29A31D826B4600288848 /* XPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XPower-Bridging-Header.h"; sourceTree = "<group>"; };
+		558E29A41D826B4700288848 /* TouchIdKeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdKeyChainHelper.m; sourceTree = "<group>"; };
+		558E29A51D826B4700288848 /* TouchIdKeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdKeyChainHelper.h; sourceTree = "<group>"; };
+		5592AAE01D873DC1000FD135 /* FriendHomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendHomeScreenViewController.swift; sourceTree = "<group>"; };
+		5592AAE31D8855CC000FD135 /* RightMenuTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuTableController.swift; sourceTree = "<group>"; };
+		5592AAE61D8858EA000FD135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5592AAE81D887D2F000FD135 /* InvitationObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationObservation.swift; sourceTree = "<group>"; };
+		55BA51BA1D86FF8E007C0F69 /* ModalCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalCalendarViewController.swift; sourceTree = "<group>"; };
+		55BA51BC1D871303007C0F69 /* NewSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSettingViewController.swift; sourceTree = "<group>"; };
+		55BA51BE1D871525007C0F69 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		55BA51C01D872530007C0F69 /* TurnOnOrOffTouchIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnOnOrOffTouchIdViewController.swift; sourceTree = "<group>"; };
 		8FDE0A8B13A51A3386FB2F3A /* Pods_XPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68E4E226040BAB67642ABE1 /* Pods-XPower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XPower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XPower/Pods-XPower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,10 +132,23 @@
 		5551130F1D80635F000825D0 /* XPower */ = {
 			isa = PBXGroup;
 			children = (
+				5592AAE61D8858EA000FD135 /* Assets.xcassets */,
+				5592AAE81D887D2F000FD135 /* InvitationObservation.swift */,
+				5592AAE31D8855CC000FD135 /* RightMenuTableController.swift */,
+				55BA51BA1D86FF8E007C0F69 /* ModalCalendarViewController.swift */,
+				553BEE921D83110D00EA585E /* EmailHandler.swift */,
+				558E29A41D826B4700288848 /* TouchIdKeyChainHelper.m */,
+				558E29A51D826B4700288848 /* TouchIdKeyChainHelper.h */,
+				555F4A6C1D81C76200DFEDB6 /* ImageCache.swift */,
+				555F4A6A1D81C73D00DFEDB6 /* Avartar.swift */,
+				555F4A681D81C45400DFEDB6 /* ChatViewController.swift */,
+				555F4A661D81B0E300DFEDB6 /* FriendAddViewController.swift */,
+				555F4A641D81B0D000DFEDB6 /* InvitationTableViewController.swift */,
+				555F4A621D81B0B900DFEDB6 /* FriendsTableViewController.swift */,
+				555F4A601D81097700DFEDB6 /* GoogleService-Info.plist */,
 				555113101D80635F000825D0 /* AppDelegate.swift */,
 				555113121D80635F000825D0 /* ViewController.swift */,
 				555113141D80635F000825D0 /* Main.storyboard */,
-				5551131A1D80635F000825D0 /* Assets.xcassets */,
 				5551131C1D80635F000825D0 /* LaunchScreen.storyboard */,
 				5551131F1D80635F000825D0 /* Info.plist */,
 				555113171D80635F000825D0 /* XPower.xcdatamodeld */,
@@ -100,6 +159,17 @@
 				5551132D1D809AB1000825D0 /* PointsViewController.swift */,
 				5551132F1D809B9C000825D0 /* PointsTableViewController.swift */,
 				555113311D80B02E000825D0 /* ObtainedPointsTableViewController.swift */,
+				555F4A6E1D81CBA300DFEDB6 /* UploadAvartarViewController.swift */,
+				555DF2981D81FDFF00809D8F /* ScoreboardViewController.swift */,
+				555DF29A1D825BDC00809D8F /* SettingViewController.swift */,
+				558E29A31D826B4600288848 /* XPower-Bridging-Header.h */,
+				553BEE8C1D82E75400EA585E /* ResetPasswordViewController.swift */,
+				553BEE8E1D82ED8700EA585E /* TabBarController.swift */,
+				553BEE901D830F6100EA585E /* ReportViewController.swift */,
+				55BA51BC1D871303007C0F69 /* NewSettingViewController.swift */,
+				55BA51BE1D871525007C0F69 /* ChangePasswordViewController.swift */,
+				55BA51C01D872530007C0F69 /* TurnOnOrOffTouchIdViewController.swift */,
+				5592AAE01D873DC1000FD135 /* FriendHomeScreenViewController.swift */,
 			);
 			path = XPower;
 			sourceTree = "<group>";
@@ -147,6 +217,7 @@
 				TargetAttributes = {
 					5551130C1D80635F000825D0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = KKX8KEUZ6R;
 					};
 				};
 			};
@@ -174,7 +245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5551131E1D80635F000825D0 /* LaunchScreen.storyboard in Resources */,
-				5551131B1D80635F000825D0 /* Assets.xcassets in Resources */,
+				555F4A611D81097700DFEDB6 /* GoogleService-Info.plist in Resources */,
+				5592AAE71D8858EA000FD135 /* Assets.xcassets in Resources */,
 				555113161D80635F000825D0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,16 +306,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5592AAE51D8855CC000FD135 /* RightMenuTableController.swift in Sources */,
+				555F4A671D81B0E300DFEDB6 /* FriendAddViewController.swift in Sources */,
 				5551132A1D8073E9000825D0 /* SignUpViewController.swift in Sources */,
+				555F4A6D1D81C76200DFEDB6 /* ImageCache.swift in Sources */,
 				5551132E1D809AB1000825D0 /* PointsViewController.swift in Sources */,
 				555113321D80B02E000825D0 /* ObtainedPointsTableViewController.swift in Sources */,
+				555F4A631D81B0B900DFEDB6 /* FriendsTableViewController.swift in Sources */,
+				553BEE8D1D82E75400EA585E /* ResetPasswordViewController.swift in Sources */,
 				555113261D8067A5000825D0 /* LoginViewController.swift in Sources */,
+				55BA51BB1D86FF8E007C0F69 /* ModalCalendarViewController.swift in Sources */,
 				555113281D806A21000825D0 /* ChooseSchoolViewController.swift in Sources */,
 				555113131D80635F000825D0 /* ViewController.swift in Sources */,
+				555F4A6F1D81CBA300DFEDB6 /* UploadAvartarViewController.swift in Sources */,
+				55BA51BF1D871525007C0F69 /* ChangePasswordViewController.swift in Sources */,
+				553BEE931D83110D00EA585E /* EmailHandler.swift in Sources */,
+				558E29A61D826B4700288848 /* TouchIdKeyChainHelper.m in Sources */,
+				5592AAE91D887D2F000FD135 /* InvitationObservation.swift in Sources */,
+				553BEE911D830F6100EA585E /* ReportViewController.swift in Sources */,
+				555DF2991D81FDFF00809D8F /* ScoreboardViewController.swift in Sources */,
+				55BA51BD1D871303007C0F69 /* NewSettingViewController.swift in Sources */,
+				5592AAE11D873DC1000FD135 /* FriendHomeScreenViewController.swift in Sources */,
+				553BEE8F1D82ED8700EA585E /* TabBarController.swift in Sources */,
 				555113191D80635F000825D0 /* XPower.xcdatamodeld in Sources */,
 				555113301D809B9C000825D0 /* PointsTableViewController.swift in Sources */,
+				555F4A691D81C45400DFEDB6 /* ChatViewController.swift in Sources */,
+				55BA51C11D872530007C0F69 /* TurnOnOrOffTouchIdViewController.swift in Sources */,
 				555113111D80635F000825D0 /* AppDelegate.swift in Sources */,
+				555F4A651D81B0D000DFEDB6 /* InvitationTableViewController.swift in Sources */,
+				555DF29B1D825BDC00809D8F /* SettingViewController.swift in Sources */,
 				5551132C1D80803F000825D0 /* HomeScreenViewController.swift in Sources */,
+				555F4A6B1D81C73D00DFEDB6 /* Avartar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,10 +450,15 @@
 			baseConfigurationReference = D68E4E226040BAB67642ABE1 /* Pods-XPower.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XPower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.softwaremerchant.XPower;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XPower/XPower-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -369,10 +467,14 @@
 			baseConfigurationReference = 3F96CE663F433502A051DAA7 /* Pods-XPower.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XPower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.softwaremerchant.XPower;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XPower/XPower-Bridging-Header.h";
 			};
 			name = Release;
 		};

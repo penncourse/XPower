@@ -17,6 +17,24 @@ class ChooseSchoolViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let img = UIImage(named: "chooseyourschool")
+        
+        let imageView = UIImageView.init(image: img!)
+        
+        imageView.frame = self.view.bounds
+        
+        imageView.alpha = 1
+        
+        self.view.addSubview(imageView)
+        
+        self.view.sendSubviewToBack(imageView)
+
+        
+        
+        self.navigationController!.navigationBarHidden = false
+
+        
         schoolNames.delegate = self
         schoolNames.dataSource = self
 
@@ -24,6 +42,8 @@ class ChooseSchoolViewController: UIViewController, UITableViewDelegate, UITable
         
         schoolNames.separatorStyle = UITableViewCellSeparatorStyle.None
         // Do any additional setup after loading the view.
+        
+        self.schoolNames.backgroundColor = UIColor.clearColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +67,15 @@ class ChooseSchoolViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
+        cell.textLabel?.font = UIFont.systemFontOfSize(20)
+
         cell.textLabel?.text = schoolNamesArray[indexPath.row]
+        
+        AppDelegate.schoolName = schoolNamesArray[indexPath.row]
+        
+        cell.backgroundColor = UIColor.clearColor()
+        
+        cell.indentationLevel = 10
         
         return cell
         
@@ -55,6 +83,9 @@ class ChooseSchoolViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        AppDelegate.schoolName = schoolNamesArray[indexPath.row]
+
         self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("signup"))!, animated: true)
     }
 

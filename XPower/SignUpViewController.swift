@@ -8,12 +8,16 @@
 
 import UIKit
 import Parse
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController, UIAlertViewDelegate {
 
     @IBOutlet weak var signupName: UITextField!
     @IBOutlet weak var signupEmail: UITextField!
     
+    var passwordStr:String?
+    
+    var nameDominDict = [String:String]()
     
     @IBOutlet weak var signupPassword: UITextField!
     
@@ -22,6 +26,24 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let img = UIImage(named: "signup")
+        
+        let imageView = UIImageView.init(image: img!)
+        
+        imageView.frame = self.view.bounds
+        
+        imageView.alpha = 1
+        
+        self.view.addSubview(imageView)
+        
+        self.view.sendSubviewToBack(imageView)
+        
+        
+        nameDominDict["Haverford"] = "haverford.org"
+        
+        nameDominDict[
+            "Agnes Irwin School"] = "agnesirwin.org"
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,22 +59,36 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
         let password = self.signupPassword.text
         let reenteredpassword = self.signupReenterPassword.text
         
+        passwordStr = password
         
         if(userName?.characters.count == 0) {
             
-            UIAlertView.init(title: "Error", message: "Username can not be empty", delegate: nil, cancelButtonTitle: "OK")
+            let alert1 = UIAlertView.init(title: "Error", message: "Username can not be empty", delegate: nil, cancelButtonTitle: "OK")
+            
+            alert1.show()
             return
             
         }else if(userEmail?.characters.count == 0){
-            UIAlertView.init(title: "Error", message: "Email can not be empty", delegate: nil, cancelButtonTitle: "OK")
+            let alert2 = UIAlertView.init(title: "Error", message: "Email can not be empty", delegate: nil, cancelButtonTitle: "OK")
+            alert2.show()
             return
-        }else if(password != reenteredpassword && password?.characters.count < 1){
+        }else if !((userEmail?.containsString(nameDominDict[AppDelegate.schoolName!]!))!){
             
-            UIAlertView.init(title: "Error", message: "Password and Reentered is not same", delegate: nil, cancelButtonTitle: "OK")
+            let alert3 = UIAlertView.init(title: "Error", message: "Should use school email address", delegate: nil, cancelButtonTitle: "OK")
+            
+            alert3.show()
+            
+            return
+            
+        }
+        else if(password != reenteredpassword || password?.characters.count < 1){
+            
+            let alert4 = UIAlertView.init(title: "Error", message: "Password and Reentered is not same", delegate: nil, cancelButtonTitle: "OK")
             
             self.signupPassword.text = ""
             self.signupReenterPassword.text = ""
             
+            alert4.show()
             return
             
         }else {
@@ -62,6 +98,8 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
             newUser.username = userName
             newUser.email = userEmail
             newUser.password = password
+            newUser.setValue(false, forKey: "hasavartar")
+            newUser.setValue(AppDelegate.schoolName, forKey: "schoolname")
             
             
             newUser.signUpInBackgroundWithBlock({ (succeeded: Bool, error:NSError?) in
@@ -74,6 +112,7 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
                     alertView.tag = 19
                     
                 }else{
+                    
                     
                     
                     let alertView = UIAlertView.init(title:"Success", message:"You have signed up", delegate: self, cancelButtonTitle: "Go to home")
@@ -121,9 +160,49 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
         
         if buttonIndex == 0 {
             
+            
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            
+            userDefaults.setObject(passwordStr, forKey: "loginPwd")
+            userDefaults.setObject(PFUser.currentUser()!.username!, forKey: "username")
+            
+            let rootRef = FIRDatabase.database().reference()
+            
+            let userRef = rootRef.child("user")
+            
+            let userItemRef = userRef.childByAutoId()
+            
+            let query = userRef.queryOrderedByChild("useremail").queryEqualToValue(PFUser.currentUser()!.email!)
+            
+            
+            query.observeEventType(.Value, withBlock: {
+                
+                snapShot in
+                
+                
+                let test = (snapShot.value as? NSNull)
+                
+                 print(AppDelegate.schoolName!)
+                
+                if test != nil && (snapShot.value as? NSNull)!.isEqual(NSNull.init()) {
+                    
+                    userItemRef.setValue(["useremail": PFUser.currentUser()!.email!, "username":PFUser.currentUser()!.username!, "schoolname":AppDelegate.schoolName!])
+                    
+                    
+                }
+            })
+            
+
+            
+            
+            
+            
+            
+            
+            
             dispatch_async(dispatch_get_main_queue(), {
                 
-                let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("homescreen")
+                let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("uploadavartar")
                 
                 self.navigationController?.pushViewController(viewController!, animated: true)
 

@@ -9,27 +9,49 @@
 import UIKit
 import CoreData
 import Parse
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var schoolName:String?
+    
+    static var modalViewShow:Bool?
+    
+    static var passwordForUser:String?
+    
     var window: UIWindow?
     
-    static  var totalScore = 0
+    static var height:CGFloat = 0.0
+    
+    static  var totalScoreLoad = true
 
+    static var totalScores = 0
+    
+    static var totalAllScores = 0
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSFontAttributeName: UIFont.boldSystemFontOfSize(16)],
+            forState: .Normal)
+        
+        
+        FIRApp.configure()
         
         Parse.enableLocalDatastore()
         Parse.setApplicationId("Sa9IRShhSMHtIhtGubix8OwfDUvJ8iGn3denDF0k", clientKey: "1K89I4yoWAteQMrwNZAEKjjyQZtH1E9EbUvxZDnO")
         
+        let userDefaults = NSUserDefaults.standardUserDefaults()
         
+        userDefaults.setObject(["Haverford" : "Agnes Irwin School", "Agnes Irwin School":"Haverford"], forKey: "schoolnamedictionary")
         
         // Override point for customization after application launch.
         return true
     }
 
+    
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
