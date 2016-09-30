@@ -15,6 +15,8 @@ class PointsTableViewController: UITableViewController{
     
     var tempArr = [String]()
     
+    var thisTableView:UITableView?
+    
     var pointsviewController : PointsViewController?
     
     let searchController = UISearchController.init(searchResultsController: nil)
@@ -37,10 +39,8 @@ class PointsTableViewController: UITableViewController{
         
         definesPresentationContext = true
         
-        searchController.searchBar.backgroundImage = UIImage(named: "addpointsbackground")
-
         
-        self.tableView.tableHeaderView = searchController.searchBar
+        thisTableView!.tableHeaderView = searchController.searchBar
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -59,7 +59,17 @@ class PointsTableViewController: UITableViewController{
             return name.lowercaseString.containsString(searchText.lowercaseString)
         }
         
-        tableView.reloadData()
+//        for name in Array(pointstable.keys){
+//            
+//            if name.lowercaseString.containsString(searchText.lowercaseString) {
+//                filteredPointsListArray.append(name)
+//            }
+//            
+//        }
+        
+        thisTableView!.reloadData()
+        
+      //  filteredPointsListArray.removeAll()
     }
     
 

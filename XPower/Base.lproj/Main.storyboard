@@ -731,7 +731,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wA5-N8-HF5">
-                                <rect key="frame" x="40" y="94" width="520" height="300"/>
+                                <rect key="frame" x="40" y="114" width="520" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Jdi-J1-RhO"/>
@@ -744,13 +744,13 @@
                                 </variation>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Deeds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfm-PN-u5f">
-                                <rect key="frame" x="246" y="414" width="108" height="24"/>
+                                <rect key="frame" x="246" y="434" width="108" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLS-56-Elh">
-                                <rect key="frame" x="272" y="562" width="76" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLS-56-Elh">
+                                <rect key="frame" x="262" y="606" width="76" height="30"/>
                                 <state key="normal" title="Pick a date">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -759,7 +759,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAw-S8-AGN">
-                                <rect key="frame" x="40" y="448" width="520" height="128"/>
+                                <rect key="frame" x="40" y="468" width="520" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="nyW-gH-lqv"/>
@@ -770,7 +770,7 @@
                         <constraints>
                             <constraint firstItem="Gfm-PN-u5f" firstAttribute="top" secondItem="wA5-N8-HF5" secondAttribute="bottom" constant="20" id="9hD-pR-Boe"/>
                             <constraint firstItem="VAw-S8-AGN" firstAttribute="leading" secondItem="s38-j5-w6t" secondAttribute="leading" constant="40" id="FCC-1x-Txb"/>
-                            <constraint firstItem="wA5-N8-HF5" firstAttribute="top" secondItem="f2f-ep-hGM" secondAttribute="bottom" constant="40" id="Fxq-0E-AC0"/>
+                            <constraint firstItem="wA5-N8-HF5" firstAttribute="top" secondItem="f2f-ep-hGM" secondAttribute="bottom" constant="60" id="Fxq-0E-AC0"/>
                             <constraint firstItem="Gfm-PN-u5f" firstAttribute="centerX" secondItem="lLS-56-Elh" secondAttribute="centerX" id="IFa-6C-pdZ"/>
                             <constraint firstItem="wA5-N8-HF5" firstAttribute="leading" secondItem="s38-j5-w6t" secondAttribute="leadingMargin" id="K5S-oW-DmY"/>
                             <constraint firstItem="f2f-ep-hGM" firstAttribute="centerX" secondItem="s38-j5-w6t" secondAttribute="centerX" id="KIF-tV-fTM"/>
@@ -797,9 +797,26 @@
                     <connections>
                         <outlet property="obtainedtableview" destination="VAw-S8-AGN" id="YHG-5B-h0f"/>
                         <outlet property="pointstableview" destination="wA5-N8-HF5" id="JdO-qE-bll"/>
+                        <outlet property="searchDisplayController" destination="CAa-On-srH" id="aOQ-b0-moG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WU0-jD-h9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="68p-Zd-5LB">
+                    <connections>
+                        <outlet property="delegate" destination="lQ2-V9-HES" id="dYD-0f-lV9"/>
+                        <outlet property="searchContentsController" destination="lQ2-V9-HES" id="myS-ha-c1g"/>
+                        <outlet property="searchResultsDataSource" destination="lQ2-V9-HES" id="NCf-dS-vch"/>
+                        <outlet property="searchResultsDelegate" destination="lQ2-V9-HES" id="Wwu-sV-uOz"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="CAa-On-srH">
+                    <connections>
+                        <outlet property="delegate" destination="lQ2-V9-HES" id="aAC-VM-tbM"/>
+                        <outlet property="searchContentsController" destination="lQ2-V9-HES" id="WYk-5Z-62Y"/>
+                        <outlet property="searchResultsDataSource" destination="lQ2-V9-HES" id="djw-8P-zbr"/>
+                        <outlet property="searchResultsDelegate" destination="lQ2-V9-HES" id="J4S-IM-Sab"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2242" y="1425"/>
         </scene>

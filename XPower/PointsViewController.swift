@@ -14,12 +14,17 @@ class PointsViewController: UIViewController, UIViewControllerTransitioningDeleg
     @IBOutlet weak var obtainedtableview: UITableView!
     
     
+    @IBOutlet weak var searchBar: UISearchBar!
     static let pointsViewControllerSharedInstance = PointsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         PointsTableViewController.sharedPointsTableViewControllerInstance.pointsviewController = self
+        
+        PointsTableViewController.sharedPointsTableViewControllerInstance.thisTableView = pointstableview
 
         pointstableview.delegate = PointsTableViewController.sharedPointsTableViewControllerInstance
         
@@ -38,17 +43,17 @@ class PointsViewController: UIViewController, UIViewControllerTransitioningDeleg
         
         // Do any additional setup after loading the view.
         
-//        let img = UIImage(named: "addpointsbackground")
-//        
-//        let imageView = UIImageView.init(image: img!)
-//        
-//        imageView.frame = self.view.bounds
-//        
-//        imageView.alpha = 1
-//        
-//        self.view.addSubview(imageView)
-//        
-//        self.view.sendSubviewToBack(imageView)
+        let img = UIImage(named: "addpointsbackground")
+        
+        let imageView = UIImageView.init(image: img!)
+        
+        imageView.frame = self.view.bounds
+        
+        imageView.alpha = 1
+        
+        self.view.addSubview(imageView)
+        
+        self.view.sendSubviewToBack(imageView)
 
         
         
