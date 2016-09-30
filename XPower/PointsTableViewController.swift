@@ -32,16 +32,7 @@ class PointsTableViewController: UITableViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchController.searchResultsUpdater = self
-        
-        searchController.dimsBackgroundDuringPresentation = false
-        
-        definesPresentationContext = true
-        
-        
-        thisTableView!.tableHeaderView = searchController.searchBar
-
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -52,6 +43,7 @@ class PointsTableViewController: UITableViewController{
         self.tableView.backgroundColor = UIColor.clearColor()
         
     }
+    
     
     func filterContentForSearchText(searchText:String, scope: String = "All")  {
         filteredPointsListArray = Array(pointstable.keys).filter{
@@ -82,6 +74,17 @@ class PointsTableViewController: UITableViewController{
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+        
+        searchController.searchResultsUpdater = self
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        definesPresentationContext = true
+        
+        
+        thisTableView!.tableHeaderView = searchController.searchBar
+
+        
         if searchController.active && searchController.searchBar.text != "" {
             
             return 1
@@ -152,6 +155,7 @@ class PointsTableViewController: UITableViewController{
         
         var tableRow:Int?
         
+        
         init(frame: CGRect, title:String, object:PointsTableViewController, row:Int, section: Int) {
             
             super.init(style: UITableViewCellStyle.Default, reuseIdentifier: "invitecell")
@@ -212,13 +216,20 @@ class PointsTableViewController: UITableViewController{
         
 //            ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.append(pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!])
              pointsTableObject.pointsviewController?.obtainedtableview.beginUpdates()
-            
-             ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.insert(pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!], atIndex: 0)
-            
+        
+        
+          ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.insert(sendName, atIndex: 0)
+//        (pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!], atIndex: 0)
+        
+
+        
+        
+//             ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.insert(pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!], atIndex: 0)
+        
             AppDelegate.totalScoreLoad = false
             
             
-            let alertView = UIAlertView.init(title: "Add Points!", message:pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!] , delegate: nil, cancelButtonTitle: nil)
+            let alertView = UIAlertView.init(title: "Add Points!", message:sendName , delegate: nil, cancelButtonTitle: nil)
             
             alertView.show()
             
@@ -250,9 +261,9 @@ class PointsTableViewController: UITableViewController{
             
             let totalScoreItem = totalScore.childByAutoId()
             
-            let temp = pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!]
-            
-            var totalScoreMessage = ["useremail": PFUser.currentUser()!.email!, "totalscore": String(pointsTableObject.pointstable[temp]!), "name": temp, "schoolname": PFUser.currentUser()!.objectForKey("schoolname") as! String, "date":String(NSDate().timeIntervalSince1970)]
+//            let temp = pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!]
+        
+            var totalScoreMessage = ["useremail": PFUser.currentUser()!.email!, "totalscore": String(pointsTableObject.pointstable[sendName]!), "name": sendName, "schoolname": PFUser.currentUser()!.objectForKey("schoolname") as! String, "date":String(NSDate().timeIntervalSince1970)]
             
           //  AppDelegate.totalScores += pointsTableObject.pointstable[temp]!
             
