@@ -3,17 +3,14 @@
 //  XPower
 //
 //  Created by hua on 9/12/16.
-//  Copyright © 2016 SoftwareMerchant. All rights reserved.
 //
 
 import UIKit
 import Parse
 
 class ChangePasswordViewController: UIViewController {
-
     
     let helper = TouchIdKeyChainHelper()
-
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
 
@@ -56,14 +53,9 @@ class ChangePasswordViewController: UIViewController {
     */
 
     @IBAction func updateAction(sender: AnyObject) {
-        
-        
-        
         if password.text?.characters.count > 0 && passwordagain.text?.characters.count > 0 && password.text == (userDefaults.objectForKey("loginPwd")! as! String) {
-            
-            
+                      
             PFUser.currentUser()!.password = passwordagain.text
-            
             do{
                 try PFUser.currentUser()!.save()
             }catch{
@@ -71,40 +63,25 @@ class ChangePasswordViewController: UIViewController {
                 print("update password error")
             }
             
-            
             userDefaults.setObject(passwordagain.text!, forKey: "loginPwd")
             userDefaults.setObject(PFUser.currentUser()!.username!, forKey: "username")
             
             if userDefaults.objectForKey("useTouchId") != nil &&  userDefaults.objectForKey("useTouchId") as! Bool {
-                
-                
                 helper.deleteItemAsync()
                 
                 userDefaults.setValue(true, forKey: "useTouchId")
+                
                 let namepluspassword = "\(userDefaults.objectForKey("loginPwd")!) \(userDefaults.objectForKey("username")!)"
                 
                 helper.addTouchIDItemAsync(namepluspassword.dataUsingEncoding(NSUTF8StringEncoding)!)
-
-                
-              
             }
-            
-            
-            
             self.navigationController!.popViewControllerAnimated(true)
             
         }else{
-            
-            
             let alertView = UIAlertView.init(title: "Error", message: "Please make sure input right old password and both old password and new password are not empty", delegate: nil, cancelButtonTitle: "OK")
             
-            alertView.show()
-            
-            
+            alertView.show()   
         }
-
-        
-        
     }
     
     
