@@ -15,9 +15,6 @@ class ReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        
         let img = UIImage(named: "concerns")
         
         let imageView = UIImageView.init(image: img!)
@@ -39,43 +36,21 @@ class ReportViewController: UIViewController {
     }
     
     @IBAction func sendConcerns(sender: AnyObject) {
-        
-        
+
         if self.concernstextview.text.characters.count > 0 {
-            
-            
+   
             let emailHandler = EmailHandler.sharedEmailHandler
             
             emailHandler.sendEmail("\(PFUser.currentUser()!.username!) (Email address: \(PFUser.currentUser()!.email!)) has following concerns: \n\(self.concernstextview.text)", receiver: "xpower3578@gmail.com", subject: "Concerns")
-            
-            
-            
-            
+     
             self.navigationController?.popViewControllerAnimated(true)
         }
-        
-        
-        
-        
-        
+
     }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.concernstextview.resignFirstResponder()
     }
-
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
