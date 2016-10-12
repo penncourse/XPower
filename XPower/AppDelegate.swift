@@ -2,8 +2,6 @@
 //  AppDelegate.swift
 //  XPower
 //
-//  Created by hua on 9/7/16.
-//  Copyright © 2016 SoftwareMerchant. All rights reserved.
 //
 
 import UIKit
@@ -36,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             [NSFontAttributeName: UIFont.boldSystemFontOfSize(16)],
             forState: .Normal)
         
-        
         FIRApp.configure()
         
         Parse.enableLocalDatastore()
@@ -49,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
-
     
     
     func applicationWillResignActive(application: UIApplication) {
