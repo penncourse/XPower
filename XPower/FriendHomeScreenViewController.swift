@@ -3,7 +3,6 @@
 //  XPower
 //
 //  Created by hua on 9/12/16.
-//  Copyright © 2016 SoftwareMerchant. All rights reserved.
 //
 
 import UIKit
@@ -56,10 +55,6 @@ class FriendHomeScreenViewController: UIViewController {
         invitationcount.text = "0"
         
         self.invitationlabel.addSubview(invitationcount)
-        
-        
-        
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -99,14 +94,9 @@ class FriendHomeScreenViewController: UIViewController {
     
     
     
-    func myHandler(sender:UIBarButtonItem){
-        
-        
+    func myHandler(sender:UIBarButtonItem){  
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        
-        
-        
-        
+
         let rightMenuNavigationController = mainStoryBoard.instantiateViewControllerWithIdentifier("rightmenunavigationcontroller")
         
                     presentViewController(rightMenuNavigationController, animated: true, completion: nil)
@@ -129,64 +119,29 @@ class FriendHomeScreenViewController: UIViewController {
     
     
     
-    func getInvitationNumber()  {
-        
+    func getInvitationNumber()  {    
         var temp = [String]()
-        
         
         let rootRef = FIRDatabase.database().reference()
         
-        
         let invitationRef = rootRef.child("invitation")
-        
         
         let query = invitationRef.queryOrderedByChild("receivername").queryEqualToValue(PFUser.currentUser()!.username!)
         
         query.observeEventType(.Value, withBlock: {
-            
-//            snapShot in
-//            
-//            let receivername =  snapShot.value!.objectForKey("receivername") as! String
-//            
-//            let flag = snapShot.value!.objectForKey("accepted") as! Bool
-//            
-//            
-//            if receivername == PFUser.currentUser()!.username! &&  flag == false {
-//                
-//                //                let alertView =  UIAlertView.init(title: "", message: "Do you want to add \(self.emailTextField.text!)", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Add")
-//                //
-//                //                alertView.show()
-//                
-//                temp.append((snapShot.value!.objectForKey("sendername") as! String))
-//                
-//                
-//                
-//            }
-            
-            
-            
             snapShot in
             
-            let test = (snapShot.value as? NSNull)
+              let test = (snapShot.value as? NSNull)
             
-            if(snapShot.value is NSNull){
-                
-                
-            }
-            else{
-                
-                
+              if(snapShot.value is NSNull){
+                print("snapShotValue is null")
+              }
+              else{
                 let all = (snapShot.value?.allKeys)! as? [String]
-                
-                
-                //  && ( ( (snapShot.value!["sendEmail"])! as! String) == self.emailTextField.text!)
-                
+           
                 for a in all! {
-                    
-                   // print(snapShot.value!.objectForKey(a)!)
-                    
+                                        
                     let result = snapShot.value!.objectForKey(a)! as! [String:AnyObject]
-                    
                     
                     let flag  = result["accepted"]! as! Bool
                     
@@ -197,38 +152,21 @@ class FriendHomeScreenViewController: UIViewController {
                         temp.append(name! as! String)
                         
                     }
-                    
-                    
-                    
-                    
-                    
+   
                 }
                 
                 self.invitationcount.text = String(temp.count)
                 
                 self.invitationcount.setNeedsDisplay()
                 
-                
-                
             }
-            
-            
-            
-            
-            
+ 
         })
 
-            
-            
-       self.invitationcount.text = "0"
+        self.invitationcount.text = "0"
         
         self.invitationcount.setNeedsDisplay()
             
-    
-     //   query.removeAllObservers()
-        
-        
-    
     }
 
 
