@@ -3,15 +3,11 @@
 //  XPower
 //
 //  Created by hua on 9/7/16.
-//  Copyright © 2016 SoftwareMerchant. All rights reserved.
 //
 
 import UIKit
 import Parse
 import FirebaseDatabase
-
-
-
 
 extension NSDate {
     
@@ -29,21 +25,6 @@ extension NSDate {
         return date
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class HomeScreenViewController: UIViewController {
@@ -152,40 +133,25 @@ class HomeScreenViewController: UIViewController {
         settingbuttonImageView.center = CGPointMake(self.settingbutton.frame.size.width/2, self.settingbutton.frame.size.height/2)
         
         settingbuttonImageView.tintColor = UIColor.whiteColor()
-        self.settingbutton.addSubview(settingbuttonImageView)
-        
-        
-        
-        
-        
+        self.settingbutton.addSubview(settingbuttonImageView)   
         
         let exitImage = UIImage(named: "exit")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        
-       
-        
-        
-        
+    
         self.totalScores = 0
         
         self.totalScoreRef = self.rootRef.child("totalScore")
         
         AppDelegate.totalScores = 0
-        
-      //  totalscoreLabel.text = String(AppDelegate.totalScores)
-        
+                
         let query = self.totalScoreRef!.queryOrderedByChild("useremail").queryEqualToValue(PFUser.currentUser()!.email!).observeEventType(.Value, withBlock: {
             
+          snapShot in
             
-            snapShot in
-            
-            if snapShot.value is NSNull? {
-                
+            if snapShot.value is NSNull? {    
                 return
-                
             }
             
             let all = (snapShot.value?.allKeys)! as? [String]
-            // let all = snapShot.value?.allKeys! as? [String]
             
             for a in all! {
                 
@@ -236,25 +202,17 @@ class HomeScreenViewController: UIViewController {
             })
             
             AppDelegate.totalScoreLoad = false
-            
-            
-            
+  
         })
 
-        
     }
-    
-    
-    
-    
-    
+     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBarHidden = true
         
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -272,71 +230,32 @@ class HomeScreenViewController: UIViewController {
         self.navigationController!.pushViewController((self.storyboard?.instantiateViewControllerWithIdentifier("firstscreen"))!, animated: true)
         
     }
-    
-    
-    
-    
+
     @IBAction func pointsAction(sender: AnyObject) {
         
         self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("points"))!, animated: true)
-        
-        
+    
     }
-    
-    
     
     @IBAction func interactWithFriends(sender: AnyObject) {
         
-        
         self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("friendhomescreen"), animated: true)
-        
-        
         
     }
     
-    
-    
     @IBAction func gotoScoreBoard(sender: AnyObject) {
-        
-        
-        
-        
-        
+ 
         let scoreboardviewcontroller = self.storyboard!.instantiateViewControllerWithIdentifier("scoreboard") as! ScoreboardViewController
-        
-        
-//        scoreboardviewcontroller.schoolNameText = PFUser.currentUser()!.objectForKey("schoolname")! as! String
-//        
-//        scoreboardviewcontroller.schoolPointsText = String(schoolscores)
-        
+    
         self.navigationController!.pushViewController(scoreboardviewcontroller, animated: true)
         
         
     }
-    
-    
-    
+
     @IBAction func gotoSettingpage(sender: AnyObject) {
         
         self.navigationController?.pushViewController((self.storyboard?.instantiateViewControllerWithIdentifier("newsetting"))!, animated: true)
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }
