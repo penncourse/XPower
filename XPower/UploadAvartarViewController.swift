@@ -24,8 +24,7 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
     uploadavartar.image = UIImage.init(named: "defaultavartar")
 
         // Do any additional setup after loading the view.
-        
-        
+
         let img = UIImage(named: "uploadyourimage")
         
         let imageView = UIImageView.init(image: img!)
@@ -36,10 +35,7 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
         
         self.view.addSubview(imageView)
         
-        self.view.sendSubviewToBack(imageView)
-        
-        
-        
+        self.view.sendSubviewToBack(imageView)   
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,27 +43,18 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     @IBAction func skipUploadAvartar(sender: AnyObject) {
-        
-        
+
         if dismiss != nil && dismiss! {
-            
             self.navigationController!.popViewControllerAnimated(true)
             return
             
         }
         
-        
-         Avatar.createAvatar(PFUser.currentUser()!.username!, senderDisplayName: "", user: PFUser.currentUser()!, color: UIColor.lightGrayColor())
-        
-        
+        Avatar.createAvatar(PFUser.currentUser()!.username!, senderDisplayName: "", user: PFUser.currentUser()!, color: UIColor.lightGrayColor())
+            
         self.navigationController!.pushViewController(storyboard!.instantiateViewControllerWithIdentifier("homescreen"), animated: true)
-        
-        
-        
-        
+    
     }
 
     @IBAction func uploadAvartartoStorage(sender: AnyObject) {
@@ -78,12 +65,9 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
         
         imagePickController.delegate = self
         
-        
         self.presentViewController(imagePickController, animated:true, completion:nil)
         
     }
-    
-    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
@@ -104,21 +88,16 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
             
         }
 
-        
         dismissViewControllerAnimated(true, completion: nil)
         
-    }
-    
+    } 
     
     private func uploadImagetoFirebaseStorage(image:UIImage){
         
         let imageName = NSUUID().UUIDString
         
         let ref = FIRStorage.storage().reference().child("avartarImage").child(imageName)
-        
-        
-        
-        
+           
         if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
             ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 
@@ -145,10 +124,8 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
                         print("update parse user fails")
                     }
                     
-                                       
                     Avatar.createAvatar(PFUser.currentUser()!.username!, senderDisplayName: "", user: PFUser.currentUser()!, color: UIColor.lightGrayColor())
-                    
-                    
+       
                     if self.dismiss != nil && self.dismiss! {
                         
                         self.navigationController?.popViewControllerAnimated(true)
@@ -156,8 +133,7 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
                         return
                         
                     }
-                    
-                                       
+                  
                     dispatch_async(dispatch_get_main_queue(), {
                         
                         self.navigationController?.pushViewController((self.storyboard?.instantiateViewControllerWithIdentifier("homescreen"))!, animated: true)
@@ -169,29 +145,7 @@ class UploadAvartarViewController: UIViewController, UIImagePickerControllerDele
                 
             })
         }
-        
-        
-        
-        
-    }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
 
 }
