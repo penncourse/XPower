@@ -11,7 +11,6 @@ import skpsmtpmessage
 
 class EmailHandler: NSObject, SKPSMTPMessageDelegate {
     
-    
     func sendEmail(bodyMessage: String?, receiver: String?, subject: String?) {
         let confirmEmail = SKPSMTPMessage()
         confirmEmail.subject = subject
@@ -30,10 +29,8 @@ class EmailHandler: NSObject, SKPSMTPMessageDelegate {
         
         confirmEmail.parts = [contentPart]
         
-         confirmEmail.send()
-        
-        
-        
+        confirmEmail.send()
+  
     }
     
     func messageSent(message: SKPSMTPMessage!) {
@@ -42,12 +39,7 @@ class EmailHandler: NSObject, SKPSMTPMessageDelegate {
     
     func messageFailed(message: SKPSMTPMessage!, error: NSError!) {
         print("message-\(message) \n error-\(error)")
-    }
-    
-    
-    
+    }  
     
     static let sharedEmailHandler = EmailHandler()
-
-
 }
