@@ -1,24 +1,3 @@
-/*
-* Copyright (c) 2015 Razeware LLC
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-* THE SOFTWARE.
-*/
 
 import UIKit
 import JSQMessagesViewController
@@ -30,11 +9,9 @@ import AssetsLibrary
 import MediaPlayer
 import Parse
 extension MPMoviePlayerViewController {
-    
     func test()  {
         self.moviePlayer.stop()
-    }
-    
+    }   
 }
 
 
@@ -43,32 +20,22 @@ extension MPMoviePlayerViewController {
 class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var displaymessageagain = true
-    
     var handle: UInt = 0
-    
     let storage = FIRStorage.storage()
-    
     var titleString = ""
-    
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    
-  var messages = [JSQMessage]()
+    var messages = [JSQMessage]()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var deviceUserIdForOneSignal: String!
     
     var messageQuery:  FIRDatabaseQuery?
-    
     var receiverId:String!
-    
     var receiverName:String!
-    
     let rootRef = FIRDatabase.database().reference()
     var messageRef: FIRDatabaseReference!
-    
     var deviceUserTokenOneSignalRef:FIRDatabaseReference!
-    
     var friendSignalId:String!
     
     //Typing 
@@ -77,14 +44,11 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     
     //Query for typing users
     var usersTypingQuery: FIRDatabaseQuery!
-    
     var avatarRef: FIRDatabaseReference!
     
     
     var isTyping: Bool{ //using a computed property, update userIsTypingRef each time you update this property
-        
         get {
-            
             return localTyping
         }
         
@@ -99,17 +63,14 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     
     //observe isTyping text 
     private func observeTyping(){
-        
         let typingIndicatorRef = rootRef.child("typingIndicator") // creates a reference to the URL /typingIndicator, which is where you'll upate status of user
-        
+    
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue() //you can delete this reference once the user left or disconnect using onDisconnectRemoveValue
-        
+ 
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqualToValue(true) // you initialize the query by retrieving all users who are typing. This is basically saying. "Hey Firebase, go to the key/typing indicators and get me all users for whom the value is true"
-        
         //querying for typing users
         usersTypingQuery.observeEventType(.Value, withBlock: { //observe for changes using .Value; this will give you an upate anytime anything changes.
-            
             data in
             if data.childrenCount == 1 && self.isTyping {  // check if one user and istyping and the local user is typing, do not display the inidicator
                 return
@@ -117,143 +78,70 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
             
             self.showTypingIndicator = data.childrenCount > 0 //if more than zero users is typing and local user is not, so scroll to bottom animated to ensure the indicator is displayed
             self.scrollToBottomAnimated(true)
-        
-            
-            
         })
-        
-        
-        
     }
     
     
     override func textViewDidChange(textView: UITextView) {
-        
         super.textViewDidChange(textView)
         isTyping  = textView.text != ""
-        
     }
     
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    title = receiverName
-    setupBubbles()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = receiverName
+        setupBubbles()
     
-    collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewAvatarSizeDefault)
-    collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewAvatarSizeDefault)
+        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewAvatarSizeDefault)
+        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewAvatarSizeDefault)
+        messageRef = rootRef.child("messages") 
+        avatarRef = rootRef.child("avatars") 
+        deviceUserTokenOneSignalRef = rootRef.child("usernameandonesignalid")
     
-    
-    messageRef = rootRef.child("messages")
-    
-    avatarRef = rootRef.child("avatars")
-
-    
-    deviceUserTokenOneSignalRef = rootRef.child("usernameandonesignalid")
-    
-    
-    
-
-    let deviceUserItemRef = deviceUserTokenOneSignalRef.childByAutoId()
-    
-    
-  //  deviceUserItemRef.setValue(["username": senderId, "oneSignalId": deviceUserIdForOneSignal])
-    
-
-    
-    let query = deviceUserTokenOneSignalRef.queryOrderedByChild("username").queryEqualToValue(receiverId)
-    
-    query.observeEventType(.ChildAdded, withBlock: {
+        let deviceUserItemRef = deviceUserTokenOneSignalRef.childByAutoId()
         
-        (snapShot) in
+        let query = deviceUserTokenOneSignalRef.queryOrderedByChild("username").queryEqualToValue(receiverId)
+    
+        query.observeEventType(.ChildAdded, withBlock: {
         
-        print(snapShot.value!)
-        
-    //    self.friendSignalId = snapShot.value!["oneSignalId"] as! String
-        
-        
+            (snapShot) in
+               print(snapShot.value!)        
     })
-    
-  
-
-
-
-    
     observeTyping()
-    
-    
-    
   }
     
-    
-       
-    
-    
-    
-    
-    override func didPressAccessoryButton(sender: UIButton) {
+   override func didPressAccessoryButton(sender: UIButton) {
         self.inputToolbar.contentView!.textView!.resignFirstResponder()
-        
         let sheet = UIAlertController(title: "Media messages", message: nil, preferredStyle: .ActionSheet)
+        let photoAction = UIAlertAction(title: "Send photo", style: .Default) { (action) in     
+        let imagePickerControllerTest = UIImagePickerController()
+            
+        imagePickerControllerTest.allowsEditing = true
+            
+        imagePickerControllerTest.delegate = self
+            
+            
+        self.presentViewController(imagePickerControllerTest, animated: true, completion: nil)
+   }
         
-        let photoAction = UIAlertAction(title: "Send photo", style: .Default) { (action) in
-            /**
-             *  Create fake photo
-             */
-            
-            let imagePickerControllerTest = UIImagePickerController()
-            
-            imagePickerControllerTest.allowsEditing = true
-            
-            imagePickerControllerTest.delegate = self
-            
-            
-            self.presentViewController(imagePickerControllerTest, animated: true, completion: nil)
-            
-//            let photoItem = JSQPhotoMediaItem(image: UIImage(named: "goldengate"))
-//            self.addMedia(photoItem)
-        }
         
-//        let locationAction = UIAlertAction(title: "Send location", style: .Default) { (action) in
-//            /**
-//             *  Add fake location
-//             */
-//            let locationItem = self.buildLocationItem()
-//            
-//            self.addMedia(locationItem)
-//        }
-        
-        let videoAction = UIAlertAction(title: "Send video", style: .Default) { (action) in
-            /**
-             *  Add fake video
-             */
-            let imagePickerControllerTest = UIImagePickerController()
+   let videoAction = UIAlertAction(title: "Send video", style: .Default) { (action) in
+           
+         let imagePickerControllerTest = UIImagePickerController()
             
-            imagePickerControllerTest.allowsEditing = true
+         imagePickerControllerTest.allowsEditing = true
             
-            imagePickerControllerTest.delegate = self
+         imagePickerControllerTest.delegate = self
 
-            imagePickerControllerTest.mediaTypes = ["public.movie"]
-            
-            
-            self.presentViewController(imagePickerControllerTest, animated: true, completion: nil)
-        }
-        
-//        let audioAction = UIAlertAction(title: "Send audio", style: .Default) { (action) in
-//            /**
-//             *  Add fake audio
-//             */
-//            let audioItem = self.buildAudioItem()
-//            
-//            self.addMedia(audioItem)
-//        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+         imagePickerControllerTest.mediaTypes = ["public.movie"]
+               
+         self.presentViewController(imagePickerControllerTest, animated: true, completion: nil)
+    }
+                
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         sheet.addAction(photoAction)
-//        sheet.addAction(locationAction)
-      //  sheet.addAction(videoAction)
-//        sheet.addAction(audioAction)
         sheet.addAction(cancelAction)
         
         self.presentViewController(sheet, animated: true, completion: nil)
@@ -273,15 +161,11 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
             selectedImageFromPicker = originalImage
         }
         
-
-        
         if let selectedImage = selectedImageFromPicker {
             
             uploadImagetoFirebaseStorage(selectedImage)
             
         }
-        
-        
         
         dismissViewControllerAnimated(true, completion: nil)
         
@@ -289,16 +173,10 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     
     private func uploadVideotoFirebaseStorage(video:NSURL?){
         let imageName = NSUUID().UUIDString
-        
         let ref = FIRStorage.storage().reference().child("message_videos").child(imageName)
-        
-        
-        
 
         let assetLibrary = ALAssetsLibrary()
-        
         assetLibrary.assetForURL(video!, resultBlock: {
-            
             asset in
             
             let rep = asset.defaultRepresentation()
@@ -321,35 +199,18 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
                 }
                 
             })
-
-            
-            
-            }, failureBlock: {
+           }, failureBlock: {
                 
                 error in
                 print(error)
-        })
-        
-        
-        
-        
-        
-        
-
-        
+        })       
     }
-    
-    
     
     private func uploadImagetoFirebaseStorage(image:UIImage){
         
         let imageName = NSUUID().UUIDString
-        
         let ref = FIRStorage.storage().reference().child("message_images").child(imageName)
-        
-    
-        
-        
+       
         if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
             ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 
@@ -364,14 +225,7 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
                 
             })
         }
-        
-        
-
-        
     }
-    
-    
-    
     
     private func sendMessageWithImageUrl(imageUrl:String){
         
@@ -380,25 +234,8 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
         let messageItem = ["text": imageUrl, "senderId":senderId, "receiverId":receiverId]
         
         itemRef.setValue(messageItem)
-        
-//        OneSignal.postNotification(["contents": ["en":imageUrl], "include_player_ids": [self.friendSignalId]], onSuccess: {
-//            _ in
-//            print("success")
-//            }, onFailure: {
-//                error in
-//                print(error.localizedDescription)
-//                
-//        })
-        
-        
-        
-        
-        
-        
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
         isTyping = false
-        
         finishSendingMessage()
         
     }
@@ -406,11 +243,6 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    
-    
-    
    
     private func setupBubbles(){
         let factory = JSQMessagesBubbleImageFactory()
@@ -420,46 +252,28 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     }
     
     func addMessage(id:String, text:String, media:JSQMessageMediaData?)  {
-        
         var message: JSQMessage?
         
         if(media == nil){
-        
            message = JSQMessage(senderId: id, displayName: "", text: text)
-        
         }else {
-        
            message = JSQMessage(senderId: id, displayName: "", media: media)
         }
         
-        print(message!)
-        
         messages.append(message!)
-        
-        
-    }
-    
-    
-    
-    
+    } 
   
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-    
-    if(handle == 0) {
-    observeMessages()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if(handle == 0) {
+           observeMessages()
+        }
     }
-    
-   
-
-    
-  }
   
-  override func viewDidDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
-    
-    
-  }
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
@@ -472,36 +286,24 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         
         let message = messages[indexPath.item]
-        
-        
-        
+     
         if message.senderId == senderId
         {
             return outgoingBubbleImageView
         }else {
-            return incomingBubbleImageView
-            
-        }
-        
-        
+            return incomingBubbleImageView   
+        } 
     }
-    
-    
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         
         let message = messages[indexPath.row]
         let temp = Avatar.avartarImages
         
-        
         if Avatar.avartarImages[message.senderId] == nil {
             
             return JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "defaultavartar"), diameter: 30)
         }
-        
-        print(Avatar.avartarImages.count)
-        
-        print(Avatar.avartarImages[message.senderId])
         
         return Avatar.avartarImages[message.senderId]
     }
@@ -509,9 +311,7 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
-        
         let message = messages[indexPath.item]
-    
                 
         if message.senderId == senderId  && message.isMediaMessage == false {
             
@@ -523,70 +323,32 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
             cell.textView!.textColor = UIColor.blackColor()
         }
         
-//        cell.userInteractionEnabled = true
-//        cell.messageBubbleImageView.userInteractionEnabled = true
-//        
-//        let tap = UITapGestureRecognizer.init(target: self, action: #selector(cellTappedon))
-//        
-//        cell.messageBubbleImageView.addGestureRecognizer(tap)
-        
         return cell
-        
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
-        
         let message = messages[indexPath.row]
-        
-
         let temp = message.media as? JSQVideoMediaItem
         
         if(message.isMediaMessage && (temp?.fileURL.path!.containsString("mov"))!) {
-            
             let movieUrl = temp?.fileURL
 
-                                        if NSFileManager.defaultManager().fileExistsAtPath(movieUrl!.path!){
+            if NSFileManager.defaultManager().fileExistsAtPath(movieUrl!.path!){
             
-                                            let moviePlayer = MPMoviePlayerViewController.init(contentURL: movieUrl)
-                                            
-                                        
-                                            
-                                            
-                                            
-                                   moviePlayer.moviePlayer.controlStyle = MPMovieControlStyle.Default
-                                           
-                                            
-                                            
-                                        
-                                            
-                                            moviePlayer.moviePlayer.shouldAutoplay = true
-                    self.presentMoviePlayerViewControllerAnimated(moviePlayer)
+                  let moviePlayer = MPMoviePlayerViewController.init(contentURL: movieUrl)                  
+                  moviePlayer.moviePlayer.controlStyle = MPMovieControlStyle.Default
+                
+                  moviePlayer.moviePlayer.shouldAutoplay = true
+                  self.presentMoviePlayerViewControllerAnimated(moviePlayer)
                                       
-                                            moviePlayer.moviePlayer.setFullscreen(false, animated: true)
-                                            
-                                            
-                                            NSNotificationCenter.defaultCenter().addObserver(moviePlayer, selector: #selector(test), name: MPMoviePlayerDidEnterFullscreenNotification, object: nil)
-                                    
-                                    }
-            
-            
-            
-            
-            
-            
-            
+                  moviePlayer.moviePlayer.setFullscreen(false, animated: true)   
+                  NSNotificationCenter.defaultCenter().addObserver(moviePlayer, selector: #selector(test), name: MPMoviePlayerDidEnterFullscreenNotification, object: nil)                       
+             }
         }
         
-    }
-
+     }
     
-    func test()  {
-        
-        print("hehe")
-        
-    }
-    
-       override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         
         let itemRef = messageRef.childByAutoId()
         
@@ -595,33 +357,12 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
         var messageItem = [String:String!]()
         
         if(prefixwordaddornot != nil && prefixwordaddornot! ){
-
-        
-        messageItem = ["text": "The user \(PFUser.currentUser()!.username!) challenges you to - \n" + text, "senderId":senderId, "receiverId":receiverId]
-            
+            messageItem = ["text": "The user \(PFUser.currentUser()!.username!) challenges you to - \n" + text, "senderId":senderId, "receiverId":receiverId]        
         }else{
-            messageItem = ["text": text, "senderId":senderId, "receiverId":receiverId]
-
-            
+            messageItem = ["text": text, "senderId":senderId, "receiverId":receiverId]    
         }
         
         itemRef.setValue(messageItem)
-        
-        
-//        OneSignal.postNotification(["contents": ["en":text], "include_player_ids": [self.friendSignalId]], onSuccess: {
-//            _ in
-//            print("success")
-//            }, onFailure: {
-//                error in
-//                print(error.localizedDescription)
-//                
-//        })
-        
-        
-        
-        
-        
-        
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         isTyping = false
@@ -634,12 +375,9 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
     //Synchronizing the Data Source
     
     private func observeMessages(){
+       messageQuery = messageRef.queryLimitedToLast(25) //start by synchronization to the last 25 messages
         
-     
-        
-         messageQuery = messageRef.queryLimitedToLast(25) //start by synchronization to the last 25 messages
-        
-        messageQuery!.queryOrderedByChild("receiverId")
+       messageQuery!.queryOrderedByChild("receiverId")
        handle =  messageQuery!.observeEventType(.ChildAdded, withBlock: {
             //use the .ChildAdded event to observe for every child item that has been added and will be added at the messages location
             (snapShot) in
@@ -652,93 +390,39 @@ class ChatViewController:JSQMessagesViewController, UIImagePickerControllerDeleg
             
             let id = snapShot.value!.objectForKey("senderId") as! String
             let text = snapShot.value!.objectForKey("text") as! String
-            
-                
-                if text.containsString("firebasestorage")
-                {
+               
+            if text.containsString("firebasestorage")
+            {
                     let url = NSURL(string: text)
                     let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-                    
-                    
-                    
+   
                     if text.containsString("message_images") {
+                 
+                       var messageMediaData =  JSQPhotoMediaItem(image:UIImage(data: data!))
                         
+                       messageMediaData.appliesMediaViewMaskAsOutgoing = false
                         
-                        var messageMediaData =  JSQPhotoMediaItem(image:UIImage(data: data!))
-                        
-                        messageMediaData.appliesMediaViewMaskAsOutgoing = false
-                        
-                    self.addMessage(id, text: text, media: messageMediaData )
+                       self.addMessage(id, text: text, media: messageMediaData )
                     }else if text.containsString("message_videos") {
-                      
-                        
-//                         dataStr = NSTemporaryDirectory() + "temp.mov" data.writeToFile(dataStr, atomically: true) let movieUrl = NSURL(fileURLWithPath: dataStr)
-                        
                         let dataStr = NSTemporaryDirectory() + "temp.mov"
                         
                         data!.writeToFile(dataStr, atomically:  true)
                         
-                        let movieUrl = NSURL(fileURLWithPath: dataStr)
-                        
-                        
-                        
-                        
-                      self.addMessage(id, text: dataStr, media: JSQVideoMediaItem(fileURL:movieUrl, isReadyToPlay: true))
-                        
-                        
-                     
-                        
-//                            if NSFileManager.defaultManager().fileExistsAtPath(movieUrl.path!){
-//                        
-//                        let moviePlayer = MPMoviePlayerViewController.init(contentURL: movieUrl)
-//                        
-//
-//                        
-//                        
-//                        //self.view.addSubview(moviePlayer.view)
-//                        
-//                        
-//                       moviePlayer.moviePlayer.controlStyle = MPMovieControlStyle.Default
-//                                moviePlayer.moviePlayer.shouldAutoplay = true
-//                                self.presentMoviePlayerViewControllerAnimated(moviePlayer)
-//                               moviePlayer.moviePlayer.setFullscreen(true, animated: true)
-//                                
-//                                
-//                        
-//                        }
-                        
+                        let movieUrl = NSURL(fileURLWithPath: dataStr)   
+         
+                        self.addMessage(id, text: dataStr, media: JSQVideoMediaItem(fileURL:movieUrl, isReadyToPlay: true))    
                     }
-                    
-                    
-                }else{
-                
-//            let prefixwordaddornot = self.userDefaults.objectForKey("prefixwords") as? Bool
-//                    
-//                    if(prefixwordaddornot != nil && prefixwordaddornot! ){
-            self.addMessage(id, text:  text, media: nil) //add new message to data source
-//                    }else {
-//                        self.addMessage(id, text: text, media: nil) //add new message to data source
-//
-//                    }
-                }
-        
-            self.finishReceivingMessage() //inform JSQMessageViewController that a message has been received
             
+             }else{
+           
+                 self.addMessage(id, text:  text, media: nil) //add new message to data source
+
             }
-            
-            
-            
+        
+            self.finishReceivingMessage() //inform JSQMessageViewController that a message has been received   
+         }
         })
-        
-        
+  
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
 }
