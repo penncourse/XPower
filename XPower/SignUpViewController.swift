@@ -112,29 +112,15 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
                     alertView.tag = 19
                     
                 }else{
-                    
-                    
-                    
+                       
                     let alertView = UIAlertView.init(title:"Success", message:"You have signed up", delegate: self, cancelButtonTitle: "Go to home")
                     
                     alertView.show()
                     
-                    
-                    // dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                    
-                    //   })
-                    
-                    
                 }
-                
-                
-                
-            })
 
-            
-            
+            }) 
         }
-  
     }
     
     
@@ -159,8 +145,6 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
         }
         
         if buttonIndex == 0 {
-            
-            
             let userDefaults = NSUserDefaults.standardUserDefaults()
             
             userDefaults.setObject(passwordStr, forKey: "loginPwd")
@@ -178,27 +162,14 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
             query.observeEventType(.Value, withBlock: {
                 
                 snapShot in
-                
-                
-                let test = (snapShot.value as? NSNull)
-                
-                 print(AppDelegate.schoolName!)
-                
-                if test != nil && (snapShot.value as? NSNull)!.isEqual(NSNull.init()) {
-                    
-                    userItemRef.setValue(["useremail": PFUser.currentUser()!.email!, "username":PFUser.currentUser()!.username!, "schoolname":AppDelegate.schoolName!])
-                    
-                    
-                }
-            })
-            
 
-            
-            
-            
-            
-            
-            
+                  let test = (snapShot.value as? NSNull)
+                                
+                  if test != nil && (snapShot.value as? NSNull)!.isEqual(NSNull.init()) {
+                    
+                    userItemRef.setValue(["useremail": PFUser.currentUser()!.email!, "username":PFUser.currentUser()!.username!, "schoolname":AppDelegate.schoolName!])        
+                  }
+            })    
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -212,15 +183,5 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
         }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
