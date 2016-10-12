@@ -15,7 +15,6 @@ class ScoreboardViewController: UIViewController {
     
     @IBOutlet weak var anotherschoolname: UILabel!
     
-    
     @IBOutlet weak var anotherschoolpoints: UILabel!
     
     var schoolNameText:String?
@@ -26,9 +25,7 @@ class ScoreboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        
         
         let img = UIImage(named: "scoreboard")
         
@@ -42,11 +39,9 @@ class ScoreboardViewController: UIViewController {
         
         self.view.sendSubviewToBack(imageView)
         
-        
         schoolname.text = PFUser.currentUser()!.objectForKey("schoolname") as! String
         
         var schoolscores = 0
-        
         
         anotherschoolname.text = (userDefaults.objectForKey("schoolnamedictionary") as![String:String])[schoolname.text!]
         
@@ -54,23 +49,14 @@ class ScoreboardViewController: UIViewController {
         
         var totalScoreRef = FIRDatabase.database().reference().child("totalScore")
         
-        
-        
-        //  totalscoreLabel.text = String(AppDelegate.totalScores)
-        
         let query = totalScoreRef.queryOrderedByChild("schoolname").queryEqualToValue(PFUser.currentUser()!.objectForKey("schoolname") as! String).observeEventType(.Value, withBlock: {
             
-            
-            snapShot in
-            
-            if snapShot.value is NSNull? {
-                
+           snapShot in
+            if snapShot.value is NSNull? {     
                 return
-                
             }
             
             let all = (snapShot.value?.allKeys)! as? [String]
-            // let all = snapShot.value?.allKeys! as? [String]
             
             for a in all! {
                 
@@ -87,19 +73,11 @@ class ScoreboardViewController: UIViewController {
             
             self.schoolname.setNeedsDisplay()
             self.schoolpoints.setNeedsDisplay()
-            
-            
-            
-            
+             
         })
         
-//        print(userDefaults.objectForKey("schoolnamedictionary"))
-//
-//        print(anotherschoolname.text)
-        
         let anotherquery = totalScoreRef.queryOrderedByChild("schoolname").queryEqualToValue(anotherschoolname?.text).observeEventType(.Value, withBlock: {
-            
-            
+                  
             snapShot in
             
             if snapShot.value is NSNull? {
@@ -109,7 +87,6 @@ class ScoreboardViewController: UIViewController {
             }
             
             let all = (snapShot.value?.allKeys)! as? [String]
-            // let all = snapShot.value?.allKeys! as? [String]
             
             for a in all! {
                 
@@ -119,38 +96,15 @@ class ScoreboardViewController: UIViewController {
                 
             }
             
-            
             self.anotherschoolpoints.text = String(anotherSchoolScores)
-            
-//            self.schoolname.text = PFUser.currentUser()!.objectForKey("schoolname") as! String
-            
+                        
             self.anotherschoolname.text = (userDefaults.objectForKey("schoolnamedictionary") as![String:String])[self.schoolname.text!]
             
             self.anotherschoolname.setNeedsDisplay()
             self.anotherschoolpoints.setNeedsDisplay()
-            
-            
-            
-            
+   
         })
 
-        
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
