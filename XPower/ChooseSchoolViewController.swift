@@ -3,7 +3,6 @@
 //  XPower
 //
 //  Created by hua on 9/7/16.
-//  Copyright © 2016 SoftwareMerchant. All rights reserved.
 //
 
 import UIKit
