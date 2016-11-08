@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
     
     var helper:TouchIdKeyChainHelper?
 
-    
     var loginName:String?
     var loginPassword:String?
 
@@ -27,11 +26,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         self.navigationController!.navigationBarHidden = false
-        
         
         let img = UIImage(named: "login")
         
@@ -55,18 +51,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
+ 
     @IBAction func loginAction(sender: AnyObject) {
         
         if(self.userName.text?.characters.count > 0 && self.password.text?.characters.count > 0) || (self.loginName != nil && self.loginPassword != nil && self.loginName!.characters.count > 0 && self.loginPassword!.characters.count > 0){
@@ -77,8 +62,7 @@ class LoginViewController: UIViewController {
             }
             
             dispatch_async(dispatch_get_main_queue()){
-                
-                
+         
                 PFUser.logInWithUsernameInBackground(self.loginName!, password: self.loginPassword!){
                     
                     (user:PFUser?, error:NSError?)->Void in
@@ -90,12 +74,9 @@ class LoginViewController: UIViewController {
                             
                             userDefaults.setObject(self.loginPassword, forKey: "loginPwd")
                             userDefaults.setObject(self.loginName, forKey: "username")
-                            
-                            
-                            
+                  
                             if userDefaults.objectForKey("useTouchId") != nil &&  userDefaults.objectForKey("useTouchId") as! Bool {
-                                
-                                
+
                                 self.helper!.deleteItemAsync()
                                 
                                 userDefaults.setValue(true, forKey: "useTouchId")
@@ -105,19 +86,6 @@ class LoginViewController: UIViewController {
                                 
                             }
 
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
                             let rootRef = FIRDatabase.database().reference()
                             
                             let userRef = rootRef.child("user")
@@ -142,54 +110,9 @@ class LoginViewController: UIViewController {
                                     
                                 }
                             })
-                            
-                            
-//                            self.totalScores = 0
-//                            
-//                            self.totalScoreRef = self.rootRef.child("totalScore")
-//                            
-//                            let query = self.totalScoreRef!.queryOrderedByChild("useremail").queryEqualToValue(PFUser.currentUser()!.email!).observeEventType(.Value, withBlock: {
-//                                
-//                                
-//                                snapShot in
-//                                
-//                                if snapShot.value is NSNull? {
-//                                    
-//                                    return
-//                                    
-//                                }
-//                                
-//                                let all = (snapShot.value?.allKeys)! as? [String]
-//                                // let all = snapShot.value?.allKeys! as? [String]
-//                                
-//                                for a in all! {
-//                                    
-//                                    let result = snapShot.value!.objectForKey(a) as! [String:String]
-//                                    
-//                                    AppDelegate.totalScores += Int(result["totalscore"]!)!
-//                                    
-//                                    
-//                                    if(AppDelegate.totalScoreLoad){
-//                                        
-//                                        ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.append(result["name"]!)
-//                                        
-//                                    }
-//                                    
-//                                    
-//                                }
-//                                
-//                                AppDelegate.totalScoreLoad = false
-//                                
-//                                
-//                                
-//                            })
-
-                            
-                            
+                
                             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("homescreen") as! HomeScreenViewController
-                            
-
-                            
+                     
                             self.navigationController?.pushViewController(viewController, animated: true)
                         }
                     }else{
@@ -253,8 +176,7 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func loginUseTouchId(sender: AnyObject) {
-    
-        
+       
         let userDef = NSUserDefaults.standardUserDefaults()
         
         let userTouchIdOn = userDef.objectForKey("useTouchId") as? Bool
@@ -265,11 +187,7 @@ class LoginViewController: UIViewController {
             
             helper?.copyMatchingAsync(self)
         }
-        
-
-    
-    
-    
+ 
     }
     
     
@@ -282,11 +200,8 @@ class LoginViewController: UIViewController {
    
     
     @IBAction func gotoResetPasswordPage(sender: AnyObject) {
-        
-        
+             
         self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("resetpassword"), animated: true)
-        
-        
         
     }
     

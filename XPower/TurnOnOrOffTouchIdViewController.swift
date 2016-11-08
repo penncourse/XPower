@@ -11,8 +11,6 @@ import Parse
 
 class TurnOnOrOffTouchIdViewController: UIViewController {
 
-    
-    
     let helper = TouchIdKeyChainHelper()
     
     let user = PFUser.currentUser()!
@@ -66,10 +64,7 @@ class TurnOnOrOffTouchIdViewController: UIViewController {
             touchIdswitchButton.on = false
             
         }
-
-        
-        
-        
+ 
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,8 +73,6 @@ class TurnOnOrOffTouchIdViewController: UIViewController {
     }
     
     @IBAction func statuschange(sender: AnyObject) {
-        
-        
         if(touchIdswitchButton.on){
             user.setValue(true, forKey: "touchIdOn")
             do
@@ -88,14 +81,12 @@ class TurnOnOrOffTouchIdViewController: UIViewController {
                 print("Error happens when save user data")
             }
             
-            
             userDefaults.setValue(true, forKey: "useTouchId")
             let namepluspassword = "\(userDefaults.objectForKey("loginPwd")!) \(userDefaults.objectForKey("username")!)"
             
             helper.addTouchIDItemAsync(namepluspassword.dataUsingEncoding(NSUTF8StringEncoding)!)
             
         }else{
-            
             userDefaults.setValue(false, forKey: "useTouchId")
             user.setValue(false, forKey: "touchIdOn")
             do
@@ -103,24 +94,9 @@ class TurnOnOrOffTouchIdViewController: UIViewController {
             }catch{
                 print("Error happens when save user data")
             }
-            
-            
+         
             helper.deleteItemAsync()
         }
-
-        
-        
-        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

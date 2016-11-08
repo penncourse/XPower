@@ -3,7 +3,6 @@
 //  XPower
 //
 //  Created by hua on 9/8/16.
-//  Copyright © 2016 SoftwareMerchant. All rights reserved.
 //
 
 import UIKit
@@ -22,8 +21,7 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var oldpasswordtextfield: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
         let img = UIImage(named: "settings")
         
         let imageView = UIImageView.init(image: img!)
@@ -64,11 +62,7 @@ class SettingViewController: UIViewController {
             
             touchIdswitchButton.on = false
             
-        }
-
-        
-        
-        
+        }  
         
     }
 
@@ -80,10 +74,7 @@ class SettingViewController: UIViewController {
 
     @IBAction func updateSetting(sender: AnyObject) {
         
-        
-        
         if oldpasswordtextfield.text?.characters.count > 0 && newpasswordtextfield.text?.characters.count > 0 && oldpasswordtextfield.text == (userDefaults.objectForKey("loginPwd") as! String) {
-            
             
             PFUser.currentUser()!.password = newpasswordtextfield.text
             
@@ -125,18 +116,10 @@ class SettingViewController: UIViewController {
             
             
         }
-        
-        
-        
-        
-        
-        
+ 
     }
     
      @IBAction func statuschanged(sender: AnyObject) {
-        
-        
-        
         if(touchIdswitchButton.on){
             user.setValue(true, forKey: "touchIdOn")
             do
@@ -144,7 +127,6 @@ class SettingViewController: UIViewController {
             }catch{
                 print("Error happens when save user data")
             }
-            
             
             userDefaults.setValue(true, forKey: "useTouchId")
             let namepluspassword = "\(userDefaults.objectForKey("loginPwd")!) \(userDefaults.objectForKey("username")!)"
@@ -160,13 +142,10 @@ class SettingViewController: UIViewController {
             }catch{
                 print("Error happens when save user data")
             }
-            
-            
+               
             helper.deleteItemAsync()
         }
-    
-        
-     }
+   }
     
     
     override func viewWillAppear(animated: Bool) {
@@ -181,15 +160,11 @@ class SettingViewController: UIViewController {
         
         
         let temp = self.storyboard!.instantiateViewControllerWithIdentifier("uploadavartar") as! UploadAvartarViewController
-        
-        
+  
         temp.dismiss = true
         
         self.navigationController?.pushViewController(temp, animated: true)
-        
-        
-        
-        
+      
     }
     
     

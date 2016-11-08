@@ -21,13 +21,8 @@ public enum CVPresent: Int {
 
 class ModalCalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
-    
     @IBOutlet weak var pickeddateTableView: UITableView!
-    
-   
 
-    
     struct Color {
         static let selectedText = UIColor.whiteColor()
         static let text = UIColor.blackColor()
@@ -62,8 +57,6 @@ class ModalCalendarViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         
@@ -92,7 +85,6 @@ class ModalCalendarViewController: UIViewController, UITableViewDelegate, UITabl
         
         super.viewDidLayoutSubviews()
         
-        
         calendarView.commitCalendarViewUpdate()
         
     }
@@ -106,7 +98,6 @@ class ModalCalendarViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.pointViewController!.view.alpha = 1
         
-        
         if query != nil {
             
             query!.removeAllObservers()
@@ -117,62 +108,16 @@ class ModalCalendarViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    
-    
-    @IBAction func selectButtonAction(sender: AnyObject) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        self.pointViewController!.view.alpha = 1
-//        
-//        query.removeAllObservers()
-//
-//        
-//        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
-        
-    
-
-
-
 }
 
 
 
 extension ModalCalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
-    /// Required method to implement!
     func presentationMode() -> CalendarMode {
         return .MonthView
     }
     
-    /// Required method to implement!
     func firstWeekday() -> Weekday {
         return .Sunday
     }
@@ -198,26 +143,17 @@ extension ModalCalendarViewController: CVCalendarViewDelegate, CVCalendarMenuVie
     func didSelectDayView(dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
         selectedDay = dayView
-        
-        
+ 
         temp.removeAll()
-        
-        
-        
+    
         query!.observeEventType(.Value, withBlock: {
-            
-            
-            snapShot in
+         snapShot in
             
             if snapShot.value is NSNull? {
-                
                 return
-                
             }
             
-            let all = (snapShot.value?.allKeys)! as? [String]
-            // let all = snapShot.value?.allKeys! as? [String]
-            
+            let all = (snapShot.value?.allKeys)! as? [String]            
             
             var pickedNSDate = NSDate()
             
@@ -235,43 +171,21 @@ extension ModalCalendarViewController: CVCalendarViewDelegate, CVCalendarMenuVie
                 if result["date"] == nil {
                     continue
                 }
-                
-                
-                
-                
+        
                 if Double(result["date"]!) < Double(pickedNSDate.beginningOfDay().timeIntervalSince1970) || Double(result["date"]!)! > Double(pickedNSDate.endOfDay().timeIntervalSince1970) {
                     
                     continue
                     
                 }
-                
-                
-                
-                
+     
                 self.temp.append(result["name"]!)
-                
-                
-                
-                
+                        
             }
             
-            //            print(ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray)
-            
-            
-            //            if self.obtainedtableview != nil {
-            //
-            //            self.obtainedtableview!.reloadData()
-            //            }
-            
-            
-            print(self.temp)
-            
-            self.pickeddateTableView.reloadData()
-            
+            self.pickeddateTableView.reloadData()          
             
         })
-
-        
+  
     }
     
     func presentedDateUpdated(date: CVDate) {
@@ -434,7 +348,7 @@ extension ModalCalendarViewController: CVCalendarViewAppearanceDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("pickeddatecell", forIndexPath: indexPath)
         
         
-         cell.textLabel?.text = temp[indexPath.row]
+        cell.textLabel?.text = temp[indexPath.row]
         
         cell.textLabel?.lineBreakMode = .ByWordWrapping
         

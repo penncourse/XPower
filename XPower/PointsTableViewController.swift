@@ -65,13 +65,7 @@ class PointsTableViewController: UITableViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+      
         self.tableView.backgroundView = nil
         self.tableView.backgroundColor = UIColor.clearColor()
         
@@ -86,17 +80,8 @@ class PointsTableViewController: UITableViewController{
             return name.lowercaseString.containsString(searchText.lowercaseString)
         }
         
-//        for name in Array(pointstable.keys){
-//            
-//            if name.lowercaseString.containsString(searchText.lowercaseString) {
-//                filteredPointsListArray.append(name)
-//            }
-//            
-//        }
-        
         thisTableView!.reloadData()
         
-      //  filteredPointsListArray.removeAll()
     }
     
 
@@ -108,7 +93,6 @@ class PointsTableViewController: UITableViewController{
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         
         
         searchController.searchResultsUpdater = self
@@ -117,9 +101,7 @@ class PointsTableViewController: UITableViewController{
         
         definesPresentationContext = true
         
-        
         thisTableView!.tableHeaderView = searchController.searchBar
-
         
         if searchController.active && searchController.searchBar.text != "" {
             
@@ -166,14 +148,6 @@ class PointsTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Array(self.pointsListArray.keys)[section]
     }
-    
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-    }
-    
-    
     
     class CustomerCell : UITableViewCell {
         
@@ -248,9 +222,7 @@ class PointsTableViewController: UITableViewController{
         
        func plusIndictorLabel()  {
         
-//            ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.append(pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!])
-             pointsTableObject.pointsviewController?.obtainedtableview.beginUpdates()
-        
+          pointsTableObject.pointsviewController?.obtainedtableview.beginUpdates()
         
           ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray.insert(sendName, atIndex: 0)
 //        (pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!], atIndex: 0)
@@ -264,54 +236,43 @@ class PointsTableViewController: UITableViewController{
         
             AppDelegate.totalScoreLoad = false
             
-            
-            let alertView = UIAlertView.init(title: "Add Points!", message:sendName , delegate: nil, cancelButtonTitle: nil)
-            
-            alertView.show()
-            
-            let delay = 2 * Double(NSEC_PER_SEC)
-            var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                alertView.dismissWithClickedButtonIndex(-1, animated: true)
-            })
-            
-            
-            
-//            print(ObtainedPointsTableViewController.obtainedPointsTableViewControllerSharedInstance.obtainedPointsArray)
-            pointsTableObject.pointsviewController?.obtainedtableview.reloadData()
-            let newIndexPath = NSIndexPath(forRow: 0, inSection: 0)
 
+            
+          let alertView = UIAlertView.init(title: "Add Points!", message:sendName , delegate: nil, cancelButtonTitle: nil)
+            
+          alertView.show()
+            
+          let delay = 2 * Double(NSEC_PER_SEC)
+          var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+          dispatch_after(time, dispatch_get_main_queue(), {
+                alertView.dismissWithClickedButtonIndex(-1, animated: true)
+          })
+            
+          pointsTableObject.pointsviewController?.obtainedtableview.reloadData()
+          let newIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+ 
+          pointsTableObject.pointsviewController?.obtainedtableview.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)  
+            
+          pointsTableObject.pointsviewController?.obtainedtableview.endUpdates()
            
-            pointsTableObject.pointsviewController?.obtainedtableview.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+          let rootRef = FIRDatabase.database().reference()
             
+          let schoolTotalScore = rootRef.child("schooltotalscore")
             
-            pointsTableObject.pointsviewController?.obtainedtableview.endUpdates()
+          let schooltotalScoreItem = schoolTotalScore.childByAutoId()
             
-            let rootRef = FIRDatabase.database().reference()
+          let totalScore = rootRef.child("totalScore")
             
-            let schoolTotalScore = rootRef.child("schooltotalscore")
+          let totalScoreItem = totalScore.childByAutoId()
+                    
+          var totalScoreMessage = ["useremail": PFUser.currentUser()!.email!, "totalscore": String(pointsTableObject.pointstable[sendName]!), "name": sendName, "schoolname": PFUser.currentUser()!.objectForKey("schoolname") as! String, "date":String(NSDate().timeIntervalSince1970)]
+                        
+          totalScoreItem.setValue(totalScoreMessage)
             
-            let schooltotalScoreItem = schoolTotalScore.childByAutoId()
-            
-            let totalScore = rootRef.child("totalScore")
-            
-            let totalScoreItem = totalScore.childByAutoId()
-            
-//            let temp = pointsTableObject.pointsListArray[Array(pointsTableObject.pointsListArray.keys)[tableSection!]]![tableRow!]
-        
-            var totalScoreMessage = ["useremail": PFUser.currentUser()!.email!, "totalscore": String(pointsTableObject.pointstable[sendName]!), "name": sendName, "schoolname": PFUser.currentUser()!.objectForKey("schoolname") as! String, "date":String(NSDate().timeIntervalSince1970)]
-            
-          //  AppDelegate.totalScores += pointsTableObject.pointstable[temp]!
-            
-            totalScoreItem.setValue(totalScoreMessage)
-            
-            schoolTotalScore.setValue(totalScoreMessage)
+          schoolTotalScore.setValue(totalScoreMessage)
         
         }
-        
-        
-        
-        
+  
     }
     
 
@@ -322,64 +283,16 @@ class PointsTableViewController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        
+    
         view.tintColor = UIColor.clearColor()
         
         (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.whiteColor()
         
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension PointsTableViewController: UISearchResultsUpdating{
-    
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)

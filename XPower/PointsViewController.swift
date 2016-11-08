@@ -19,9 +19,7 @@ class PointsViewController: UIViewController, UIViewControllerTransitioningDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+    
         PointsTableViewController.sharedPointsTableViewControllerInstance.pointsviewController = self
         
         PointsTableViewController.sharedPointsTableViewControllerInstance.thisTableView = pointstableview
@@ -76,25 +74,6 @@ class PointsViewController: UIViewController, UIViewControllerTransitioningDeleg
 
     @IBAction func pickadateButton(sender: AnyObject) {
         
-        
-        
-//       let topAddView = UIView.init(frame: CGRectMake(0, (self.navigationController?.navigationBar.bounds.height)!, self.view.bounds.width, 100))
-//        
-//        
-//        let countLabel = UILabel.init(frame: CGRectMake(0, (self.navigationController?.navigationBar.bounds.height)! + 10, 20, 20))
-//        
-//        countLabel.text = "test"
-//        
-//        countLabel.backgroundColor = UIColor.whiteColor()
-//        
-//        topAddView.addSubview(countLabel)
-//
-//        topAddView.alpha = 1
-//        
-//        topAddView.backgroundColor = UIColor.redColor()
-//        
-//        self.view.addSubview(topAddView)
-        
         self.view.alpha = 0.2
         
         AppDelegate.height = (self.navigationController?.navigationBar.bounds.height)!
@@ -118,16 +97,6 @@ class PointsViewController: UIViewController, UIViewControllerTransitioningDeleg
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController? {
         return HalfSizePresentationController(presentedViewController: presented, presentingViewController: source)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
