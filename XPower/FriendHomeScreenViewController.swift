@@ -140,7 +140,10 @@ class FriendHomeScreenViewController: UIViewController {
         let invitationRef = rootRef.child("invitation")
         
         
+        
         let query = invitationRef.queryOrderedByChild("receivername").queryEqualToValue(PFUser.currentUser()!.username!)
+        
+        print(PFUser.currentUser()!.username!)
         
         query.observeEventType(.Value, withBlock: {
             
@@ -178,7 +181,7 @@ class FriendHomeScreenViewController: UIViewController {
                 
                 let all = (snapShot.value?.allKeys)! as? [String]
                 
-                
+                print(all?.count)
                 //  && ( ( (snapShot.value!["sendEmail"])! as! String) == self.emailTextField.text!)
                 
                 for a in all! {

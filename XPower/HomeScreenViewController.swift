@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 import FirebaseDatabase
-
+import AFNetworking
 
 
 
@@ -154,10 +154,95 @@ class HomeScreenViewController: UIViewController {
         settingbuttonImageView.tintColor = UIColor.whiteColor()
         self.settingbutton.addSubview(settingbuttonImageView)
         
+        var manager = AFHTTPSessionManager.init(sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
         
         
+        manager.requestSerializer = AFJSONRequestSerializer()
+        manager.responseSerializer = AFJSONResponseSerializer()
+        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        manager.GET("http://www.consoaring.com/PointService.svc/pointslistarray", parameters: nil, success: {
+            (task, response) in
+            print("********")
+            
+            
+            
+            do {
+                let responseDict =
+                    response as! [String:[AnyObject]]
+                
+                
+                for (dictKey, dictValue) in responseDict
+                {
+                    PointsTableViewController.sharedPointsTableViewControllerInstance.pointsListArray[dictKey] = [String]()
+                    
+                    for i in  0 ..< dictValue.count{
+                        // let test = ((responseDict[dictKey])![i]["Task"]!)!
+                        
+                        let testDict = ((responseDict[dictKey])![i]) as! [String:AnyObject]
+                        
+                        for(testkey, testvalue) in testDict{
+                            
+                            PointsTableViewController.sharedPointsTableViewControllerInstance.pointsListArray[dictKey]!.append(testvalue as! String)
+                            // print("\(dictKey), \(testkey), \(testvalue)")
+                            
+                        }
+                        
+                        //self.displayTextView.text = test as! String
+                        
+                    }
+                    
+                    
+                }
+                
+                
+            } catch let error as NSError {
+                print("error: \(error.localizedDescription)")
+                
+            }
+            
+            print("*******")
+            
+            }, failure: {(task, error) in
+                print(error.localizedDescription)
+        })
+
         
         
+        manager.GET("http://www.consoaring.com/PointService.svc/pointstable", parameters: nil, success: {(task, response)
+            in
+            
+            let test = response as! [AnyObject]
+            
+            for i in 0 ..< test.count{
+                
+                let testDict = test[i] as! [String:AnyObject]
+                
+                PointsTableViewController.sharedPointsTableViewControllerInstance.pointstable[testDict["Description"] as! String ] = testDict["Point"] as! Int
+                
+                //                    for(testkey, testval) in testDict{
+                //
+                //                        print("\(testkey), \(testval)")
+                //
+                //                    }
+                
+                
+            }
+            
+            
+            PointsTableViewController.sharedPointsTableViewControllerInstance.pointstable["Shake your hands (5 points)"] = 5
+                        
+            }
+            
+            , failure: {
+                
+                (task, error)
+                in
+                
+                print(error.localizedDescription)
+                
+        })
+
         
         let exitImage = UIImage(named: "exit")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         
@@ -278,7 +363,7 @@ class HomeScreenViewController: UIViewController {
     
     @IBAction func pointsAction(sender: AnyObject) {
         
-        self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("points"))!, animated: true)
+        self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("pointstabcontroller"))!, animated: true)
         
         
     }

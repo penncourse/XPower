@@ -36,11 +36,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             [NSFontAttributeName: UIFont.boldSystemFontOfSize(16)],
             forState: .Normal)
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setBool(true, forKey: "tabimagesize")
+        
         
         FIRApp.configure()
         
         Parse.enableLocalDatastore()
-        Parse.setApplicationId("Sa9IRShhSMHtIhtGubix8OwfDUvJ8iGn3denDF0k", clientKey: "1K89I4yoWAteQMrwNZAEKjjyQZtH1E9EbUvxZDnO")
+       // Parse.setApplicationId("Sa9IRShhSMHtIhtGubix8OwfDUvJ8iGn3denDF0k", clientKey: "1K89I4yoWAteQMrwNZAEKjjyQZtH1E9EbUvxZDnO")
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "xpower"
+            $0.clientKey = "1K89I4yoWAteQMrwNZAEKjjyQZtH1E9EbUvxZDnO"
+            $0.server = "https://vast-scrubland-67645.herokuapp.com/parse"
+        }
+        Parse.initializeWithConfiguration(configuration)
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         

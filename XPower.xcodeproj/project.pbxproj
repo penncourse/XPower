@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5524006B1DCD1FA500025F47 /* PointsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524006A1DCD1FA500025F47 /* PointsTabViewController.swift */; };
+		5524006D1DD2682C00025F47 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524006C1DD2682C00025F47 /* FavoritesTableViewController.swift */; };
+		5524006F1DD2686600025F47 /* RecentTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524006E1DD2686600025F47 /* RecentTasksTableViewController.swift */; };
 		553BEE8D1D82E75400EA585E /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE8C1D82E75400EA585E /* ResetPasswordViewController.swift */; };
 		553BEE8F1D82ED8700EA585E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE8E1D82ED8700EA585E /* TabBarController.swift */; };
 		553BEE911D830F6100EA585E /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BEE901D830F6100EA585E /* ReportViewController.swift */; };
@@ -33,6 +36,8 @@
 		555F4A6B1D81C73D00DFEDB6 /* Avartar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A6A1D81C73D00DFEDB6 /* Avartar.swift */; };
 		555F4A6D1D81C76200DFEDB6 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A6C1D81C76200DFEDB6 /* ImageCache.swift */; };
 		555F4A6F1D81CBA300DFEDB6 /* UploadAvartarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F4A6E1D81CBA300DFEDB6 /* UploadAvartarViewController.swift */; };
+		55872D841DB5360F006D1BD6 /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55872D831DB5360F006D1BD6 /* TestTableViewController.swift */; };
+		55872D861DB5388E006D1BD6 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55872D851DB5388E006D1BD6 /* View.xib */; };
 		558E29A61D826B4700288848 /* TouchIdKeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 558E29A41D826B4700288848 /* TouchIdKeyChainHelper.m */; };
 		5592AAE11D873DC1000FD135 /* FriendHomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592AAE01D873DC1000FD135 /* FriendHomeScreenViewController.swift */; };
 		5592AAE51D8855CC000FD135 /* RightMenuTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5592AAE31D8855CC000FD135 /* RightMenuTableController.swift */; };
@@ -47,6 +52,9 @@
 
 /* Begin PBXFileReference section */
 		3F96CE663F433502A051DAA7 /* Pods-XPower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XPower.release.xcconfig"; path = "Pods/Target Support Files/Pods-XPower/Pods-XPower.release.xcconfig"; sourceTree = "<group>"; };
+		5524006A1DCD1FA500025F47 /* PointsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTabViewController.swift; sourceTree = "<group>"; };
+		5524006C1DD2682C00025F47 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		5524006E1DD2686600025F47 /* RecentTasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTasksTableViewController.swift; sourceTree = "<group>"; };
 		553BEE8C1D82E75400EA585E /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		553BEE8E1D82ED8700EA585E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		553BEE901D830F6100EA585E /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +83,8 @@
 		555F4A6A1D81C73D00DFEDB6 /* Avartar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avartar.swift; sourceTree = "<group>"; };
 		555F4A6C1D81C76200DFEDB6 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		555F4A6E1D81CBA300DFEDB6 /* UploadAvartarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadAvartarViewController.swift; sourceTree = "<group>"; };
+		55872D831DB5360F006D1BD6 /* TestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
+		55872D851DB5388E006D1BD6 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		558E29A31D826B4600288848 /* XPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XPower-Bridging-Header.h"; sourceTree = "<group>"; };
 		558E29A41D826B4700288848 /* TouchIdKeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdKeyChainHelper.m; sourceTree = "<group>"; };
 		558E29A51D826B4700288848 /* TouchIdKeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdKeyChainHelper.h; sourceTree = "<group>"; };
@@ -149,6 +159,7 @@
 				555113101D80635F000825D0 /* AppDelegate.swift */,
 				555113121D80635F000825D0 /* ViewController.swift */,
 				555113141D80635F000825D0 /* Main.storyboard */,
+				55872D851DB5388E006D1BD6 /* View.xib */,
 				5551131C1D80635F000825D0 /* LaunchScreen.storyboard */,
 				5551131F1D80635F000825D0 /* Info.plist */,
 				555113171D80635F000825D0 /* XPower.xcdatamodeld */,
@@ -170,6 +181,10 @@
 				55BA51BE1D871525007C0F69 /* ChangePasswordViewController.swift */,
 				55BA51C01D872530007C0F69 /* TurnOnOrOffTouchIdViewController.swift */,
 				5592AAE01D873DC1000FD135 /* FriendHomeScreenViewController.swift */,
+				55872D831DB5360F006D1BD6 /* TestTableViewController.swift */,
+				5524006A1DCD1FA500025F47 /* PointsTabViewController.swift */,
+				5524006C1DD2682C00025F47 /* FavoritesTableViewController.swift */,
+				5524006E1DD2686600025F47 /* RecentTasksTableViewController.swift */,
 			);
 			path = XPower;
 			sourceTree = "<group>";
@@ -245,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5551131E1D80635F000825D0 /* LaunchScreen.storyboard in Resources */,
+				55872D861DB5388E006D1BD6 /* View.xib in Resources */,
 				555F4A611D81097700DFEDB6 /* GoogleService-Info.plist in Resources */,
 				5592AAE71D8858EA000FD135 /* Assets.xcassets in Resources */,
 				555113161D80635F000825D0 /* Main.storyboard in Resources */,
@@ -308,6 +324,7 @@
 			files = (
 				5592AAE51D8855CC000FD135 /* RightMenuTableController.swift in Sources */,
 				555F4A671D81B0E300DFEDB6 /* FriendAddViewController.swift in Sources */,
+				5524006B1DCD1FA500025F47 /* PointsTabViewController.swift in Sources */,
 				5551132A1D8073E9000825D0 /* SignUpViewController.swift in Sources */,
 				555F4A6D1D81C76200DFEDB6 /* ImageCache.swift in Sources */,
 				5551132E1D809AB1000825D0 /* PointsViewController.swift in Sources */,
@@ -315,6 +332,7 @@
 				555F4A631D81B0B900DFEDB6 /* FriendsTableViewController.swift in Sources */,
 				553BEE8D1D82E75400EA585E /* ResetPasswordViewController.swift in Sources */,
 				555113261D8067A5000825D0 /* LoginViewController.swift in Sources */,
+				5524006F1DD2686600025F47 /* RecentTasksTableViewController.swift in Sources */,
 				55BA51BB1D86FF8E007C0F69 /* ModalCalendarViewController.swift in Sources */,
 				555113281D806A21000825D0 /* ChooseSchoolViewController.swift in Sources */,
 				555113131D80635F000825D0 /* ViewController.swift in Sources */,
@@ -326,6 +344,7 @@
 				553BEE911D830F6100EA585E /* ReportViewController.swift in Sources */,
 				555DF2991D81FDFF00809D8F /* ScoreboardViewController.swift in Sources */,
 				55BA51BD1D871303007C0F69 /* NewSettingViewController.swift in Sources */,
+				5524006D1DD2682C00025F47 /* FavoritesTableViewController.swift in Sources */,
 				5592AAE11D873DC1000FD135 /* FriendHomeScreenViewController.swift in Sources */,
 				553BEE8F1D82ED8700EA585E /* TabBarController.swift in Sources */,
 				555113191D80635F000825D0 /* XPower.xcdatamodeld in Sources */,
@@ -337,6 +356,7 @@
 				555DF29B1D825BDC00809D8F /* SettingViewController.swift in Sources */,
 				5551132C1D80803F000825D0 /* HomeScreenViewController.swift in Sources */,
 				555F4A6B1D81C73D00DFEDB6 /* Avartar.swift in Sources */,
+				55872D841DB5360F006D1BD6 /* TestTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +474,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XPower/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -471,6 +492,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XPower/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
 				PRODUCT_NAME = "$(TARGET_NAME)";

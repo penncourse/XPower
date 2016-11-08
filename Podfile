@@ -16,4 +16,5 @@ target 'XPower' do
   pod 'skpsmtpmessage'
   pod 'CVCalendar'
   pod 'SideMenu'
+  pod 'AFNetworking'
 end

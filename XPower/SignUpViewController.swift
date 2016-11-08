@@ -95,7 +95,7 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
             
             let newUser = PFUser()
             
-            newUser.username = userName
+            newUser.username = userName!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             newUser.email = userEmail
             newUser.password = password
             newUser.setValue(false, forKey: "hasavartar")
@@ -186,7 +186,7 @@ class SignUpViewController: UIViewController, UIAlertViewDelegate {
                 
                 if test != nil && (snapShot.value as? NSNull)!.isEqual(NSNull.init()) {
                     
-                    userItemRef.setValue(["useremail": PFUser.currentUser()!.email!, "username":PFUser.currentUser()!.username!, "schoolname":AppDelegate.schoolName!])
+                    userItemRef.setValue(["useremail": PFUser.currentUser()!.email!, "username":PFUser.currentUser()!.username!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "schoolname":AppDelegate.schoolName!])
                     
                     
                 }
